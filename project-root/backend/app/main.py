@@ -25,7 +25,7 @@ task_results: Dict[str, Dict] = {}
 async def lifespan(app: FastAPI):
     """Управление жизненным циклом приложения"""
     # Startup
-    logger.info("Starting File Processor API...")
+    logger.info("Запуск File Processor API...")
 
     # Создаем необходимые папки если их нет
     data_dir = "/app/data"
@@ -35,14 +35,14 @@ async def lifespan(app: FastAPI):
     os.makedirs(tests_dir, exist_ok=True)
     os.makedirs(results_dir, exist_ok=True)
 
-    logger.info(f"Data directory: {data_dir}")
-    logger.info(f"Tests directory: {tests_dir}")
-    logger.info(f"Results directory: {results_dir}")
+    logger.info(f"Директория данных: {data_dir}")
+    logger.info(f"Директория тестов: {tests_dir}")
+    logger.info(f"Директория результатов: {results_dir}")
 
     yield
 
     # Shutdown
-    logger.info("Shutting down...")
+    logger.info("Завершение работы...")
 
 
 app = FastAPI(title="File Processor API", lifespan=lifespan)
@@ -92,73 +92,106 @@ def add_log_to_task(task_id: str, message: str, type: str = "info"):
 
 # ========== ФУНКЦИИ ОБРАБОТКИ ФАЙЛОВ ==========
 
-def isolate_one_broken_tst(root_path: str, task_id: str):
-    """Рекурсивно ищет .tst файлы без парного .txt"""
-    add_log_to_task(task_id, "🔍 НАЧИНАЕМ РЕКУРСИВНЫЙ ПОИСК...", "info")
-    add_log_to_task(task_id, "==============================", "info")
+def find_all_broken_files(root_path: str, task_id: str):
+    """Находит ВСЕ битые .tst файлы без парных .txt во ВСЕХ вложенных папках"""
+    add_log_to_task(task_id, "🔍 НАЧИНАЕМ РЕКУРСИВНЫЙ ПОИСК ВО ВСЕХ ПАПКАХ...", "info")
+    add_log_to_task(task_id, "============================================", "info")
 
-    found_count = 0
-    processed_count = 0
+    total_found = 0
+    total_processed = 0
+    moved_files = []
 
     def walk(directory):
-        """Рекурсивный обход папок"""
-        yield directory
-        for entry in os.scandir(directory):
-            if entry.is_dir() and entry.name != "Изолированные_Битые":
-                yield from walk(entry.path)
+        """Рекурсивный обход всех папок"""
+        for root, dirs, files in os.walk(directory):
+            yield root, dirs, files
 
-    for folder in walk(root_path):
-        add_log_to_task(task_id, f"📁 Проверка папки: {folder}", "info")
-
-        try:
-            items = os.listdir(folder)
-        except Exception as e:
-            add_log_to_task(task_id, f"   ❌ Нет доступа: {e}", "error")
+    for folder, dirs, files in walk(root_path):
+        # Пропускаем папку "Изолированные_Битые" если она существует
+        if "Изолированные_Битые" in folder:
             continue
+            
+        add_log_to_task(task_id, f"📁 Проверка папки: {os.path.basename(folder)}", "info")
 
-        tst_files = sorted([f for f in items if f.lower().endswith(".tst")])
+        tst_files = sorted([f for f in files if f.lower().endswith(".tst")])
+        
+        if not tst_files:
+            add_log_to_task(task_id, "   → .tst файлов не найдено", "info")
+            continue
+            
         add_log_to_task(task_id, f"   → .tst найдено: {len(tst_files)}", "info")
 
+        folder_found = 0
         for tst in tst_files:
+            total_processed += 1
             base = os.path.splitext(tst)[0]
             txt = base + ".txt"
             txt_path = os.path.join(folder, txt)
 
             if not os.path.exists(txt_path):
-                # НАСТОЯЩИЙ битый файл — перемещаем его
+                # Найден битый файл
                 src = os.path.join(folder, tst)
-                dest_dir = os.path.join(folder, "Изолированные_Битые")
+                dest_dir = os.path.join(root_path, "Изолированные_Битые")
                 os.makedirs(dest_dir, exist_ok=True)
+                
+                # Создаем подпапку с именем оригинальной папки
+                relative_path = os.path.relpath(folder, root_path)
+                if relative_path != ".":
+                    dest_dir = os.path.join(dest_dir, relative_path)
+                    os.makedirs(dest_dir, exist_ok=True)
+                
                 dst = os.path.join(dest_dir, tst)
 
                 try:
                     shutil.move(src, dst)
-                    found_count += 1
+                    total_found += 1
+                    folder_found += 1
+                    moved_files.append({
+                        "file": tst,
+                        "from": folder,
+                        "to": dest_dir,
+                        "reason": f"Отсутствует {txt}"
+                    })
 
-                    add_log_to_task(task_id, "--- ❌ ФАЙЛ ИЗОЛИРОВАН ---", "warning")
+                    add_log_to_task(task_id, "--- ❌ БИТЫЙ ФАЙЛ НАЙДЕН ---", "warning")
                     add_log_to_task(task_id, f"   Файл: {tst}", "success")
+                    add_log_to_task(task_id, f"   Папка: {os.path.basename(folder)}", "info")
                     add_log_to_task(task_id, f"   Причина: нет {txt}", "info")
                     add_log_to_task(task_id, f"   Перемещён в: {dest_dir}", "info")
                     add_log_to_task(task_id, "---------------------------", "info")
 
-                    return {
-                        "found": 1,
-                        "processed": processed_count + 1,
-                        "moved_to": dst,
-                        "reason": f"Отсутствует {txt}"
-                    }
-
                 except Exception as e:
                     add_log_to_task(task_id, f"   ❌ Ошибка перемещения: {e}", "error")
+                    
+        if folder_found > 0:
+            add_log_to_task(task_id, f"   ✅ В папке найдено битых: {folder_found}", "success")
 
-            processed_count += 1
-
-    add_log_to_task(task_id, "✅ Сбоев не обнаружено во всех папках.", "success")
-    return {
-        "found": 0,
-        "processed": processed_count,
-        "message": "Битых файлов не обнаружено"
-    }
+    if total_found > 0:
+        add_log_to_task(task_id, "=" * 50, "info")
+        add_log_to_task(task_id, f"🎉 ПОИСК ЗАВЕРШЕН! НАЙДЕНО: {total_found} БИТЫХ ФАЙЛОВ", "success")
+        add_log_to_task(task_id, f"📊 Обработано всего файлов: {total_processed}", "info")
+        add_log_to_task(task_id, f"📁 Перемещено в: {os.path.join(root_path, 'Изолированные_Битые')}", "info")
+        add_log_to_task(task_id, "=" * 50, "info")
+        
+        return {
+            "found": total_found,
+            "processed": total_processed,
+            "moved_files": moved_files,
+            "target_folder": os.path.join(root_path, "Изолированные_Битые"),
+            "message": f"Найдено {total_found} битых файлов"
+        }
+    else:
+        add_log_to_task(task_id, "=" * 50, "info")
+        add_log_to_task(task_id, "✅ ПОИСК ЗАВЕРШЕН!", "success")
+        add_log_to_task(task_id, f"📊 Обработано файлов: {total_processed}", "info")
+        add_log_to_task(task_id, "📭 БИТЫХ ФАЙЛОВ НЕ НАЙДЕНО", "success")
+        add_log_to_task(task_id, "=" * 50, "info")
+        
+        return {
+            "found": 0,
+            "processed": total_processed,
+            "message": "Битых файлов не обнаружено"
+        }
 
 
 def parse_files_task(input_folder: str, task_id: str):
@@ -166,20 +199,22 @@ def parse_files_task(input_folder: str, task_id: str):
     add_log_to_task(task_id, f"🔍 Начинаем парсинг файлов в: {input_folder}", "info")
 
     # Создаем папку Results рядом с Tests
-    output_folder = os.path.join(os.path.dirname(input_folder), "Results", os.path.basename(input_folder))
+    data_dir = "/app/data"
+    relative_path = os.path.relpath(input_folder, data_dir)
+    output_folder = os.path.join(data_dir, "Results", relative_path)
     os.makedirs(output_folder, exist_ok=True)
 
     # Инициализация счетчика для отчета
     report_summary = {
-        "Total Files Processed": 0,
-        "UCA Files": 0,
-        "Non-UCA Files (УльтраЗвук)": 0,
-        "UCA - Incomplete/Error": 0,
-        "Errors (Read/Other)": 0,
-        "Distribution by UCA Category": {}
+        "Всего обработано": 0,
+        "UCA файлы": 0,
+        "УльтраЗвук файлы": 0,
+        "UCA - неполные/ошибки": 0,
+        "Ошибки чтения": 0,
+        "Распределение по категориям UCA": {}
     }
 
-    # Функции парсинга
+    # Функции парсинга (остаются без изменений)
     def parse_summary_line(line):
         parts = [p.strip() for p in line.strip().split("\t") if p.strip()]
         if not parts:
@@ -195,7 +230,7 @@ def parse_files_task(input_folder: str, task_id: str):
             density_str = re.findall(r"(\d+)", str(density_value))[0]
             density = int(density_str)
         except Exception:
-            return "Unknown_Density"
+            return "Неизвестная_плотность"
 
         if 1100 <= density <= 1499:
             return "1100-1499"
@@ -204,36 +239,34 @@ def parse_files_task(input_folder: str, task_id: str):
         elif 1900 <= density <= 2500:
             return "1900-2500"
         else:
-            return f"Other_{density}"
+            return f"Другая_{density}"
 
     def get_strength_type(value):
         val = str(value).lower()
 
         if "more than 14" in val:
-            return "Algorithm_gt_14"
+            return "Алгоритм_больше_14"
         elif "less than 14" in val:
-            return "Algorithm_lt_14"
+            return "Алгоритм_меньше_14"
         elif val.strip():
             cleaned_val = (
                 val.strip()
                 .replace('/', '_')
                 .replace(':', '')
-                .replace('<', 'lt_')
-                .replace('>', 'gt_')
+                .replace('<', 'меньше_')
+                .replace('>', 'больше_')
                 .replace('*', 'star')
                 .replace('?', '')
             )
-            return f"Algorithm_{cleaned_val}"
+            return f"Алгоритм_{cleaned_val}"
         else:
-            return "Unknown_Algorithm"
+            return "Неизвестный_алгоритм"
 
     def get_cement_class(value):
         if not value or pd.isna(value):
-            return "Unknown_Cement"
-        val = str(value).strip().replace("/", "_").replace(':', '').replace('<', 'lt').replace('>', 'gt').replace('*',
-                                                                                                                  'star').replace(
-            '?', '')
-        return f"Cement_{val}"
+            return "Неизвестный_цемент"
+        val = str(value).strip().replace("/", "_").replace(':', '').replace('<', 'меньше').replace('>', 'больше').replace('*', 'star').replace('?', '')
+        return f"Цемент_{val}"
 
     def get_value(df, key_fragment):
         res = df[df["Параметр"].str.contains(key_fragment, case=False, na=False)]["Значение"]
@@ -241,21 +274,30 @@ def parse_files_task(input_folder: str, task_id: str):
 
     # Основной цикл обработки
     try:
-        files = [f for f in os.listdir(input_folder) if f.lower().endswith('.txt')]
-        add_log_to_task(task_id, f"📄 Найдено .txt файлов для обработки: {len(files)}", "info")
+        # Получаем все .txt файлы рекурсивно
+        txt_files = []
+        for root, dirs, files in os.walk(input_folder):
+            for file in files:
+                if file.lower().endswith('.txt'):
+                    txt_files.append((root, file))
+                    
+        add_log_to_task(task_id, f"📄 Найдено .txt файлов для обработки: {len(txt_files)}", "info")
 
-        for file_name in files:
-            report_summary["Total Files Processed"] += 1
-            input_path = os.path.join(input_folder, file_name)
+        for root, file_name in txt_files:
+            report_summary["Всего обработано"] += 1
+            input_path = os.path.join(root, file_name)
+            relative_root = os.path.relpath(root, input_folder)
 
             add_log_to_task(task_id, f"📄 Обрабатываем: {file_name}", "info")
+            if relative_root != ".":
+                add_log_to_task(task_id, f"   📁 Папка: {relative_root}", "info")
 
             try:
                 with open(input_path, 'r', encoding='utf-8', errors='ignore') as f:
                     lines = f.readlines()
             except Exception as e:
                 add_log_to_task(task_id, f"⚠️ Не удалось прочитать файл {file_name}: {e}", "error")
-                report_summary["Errors (Read/Other)"] += 1
+                report_summary["Ошибки чтения"] += 1
                 continue
 
             # Поиск границ блоков
@@ -296,11 +338,11 @@ def parse_files_task(input_folder: str, task_id: str):
 
             # --- ОБРАБОТКА UCA ---
             if is_uca_file:
-                report_summary["UCA Files"] += 1
+                report_summary["UCA файлы"] += 1
 
                 if summary_df is None:
                     add_log_to_task(task_id, f"⚠️ Пропуск: UCA-файл без блоков Summary/Data", "warning")
-                    report_summary["UCA - Incomplete/Error"] += 1
+                    report_summary["UCA - неполные/ошибки"] += 1
                     continue
 
                 density_val = get_value(summary_df, "Density")
@@ -319,21 +361,27 @@ def parse_files_task(input_folder: str, task_id: str):
                     density_folder = get_density_range(density_val)
                     algorithm_folder = get_strength_type(strength_val)
                     cement_folder = get_cement_class(cement_val)
-                    target_folder = os.path.join(output_folder, density_folder, algorithm_folder, cement_folder)
+                    
+                    # Сохраняем структуру папок
+                    if relative_root != ".":
+                        target_folder = os.path.join(output_folder, relative_root, density_folder, algorithm_folder, cement_folder)
+                    else:
+                        target_folder = os.path.join(output_folder, density_folder, algorithm_folder, cement_folder)
+                        
                     category_key = f"{density_folder}/{algorithm_folder}/{cement_folder}"
                     add_log_to_task(task_id,
-                                    f"✅ Категория: Density={density_folder}, Strength={algorithm_folder}, Cement={cement_folder}",
+                                    f"✅ Категория: Плотность={density_folder}, Прочность={algorithm_folder}, Цемент={cement_folder}",
                                     "success")
                 else:
-                    target_folder = os.path.join(output_folder, "Incomplete")
-                    category_key = "Incomplete"
-                    report_summary["UCA - Incomplete/Error"] += 1
-                    add_log_to_task(task_id, f"⚠️ Отправлен в Incomplete: отсутствуют {', '.join(missing_params)}",
+                    target_folder = os.path.join(output_folder, relative_root, "Неполные")
+                    category_key = "Неполные"
+                    report_summary["UCA - неполные/ошибки"] += 1
+                    add_log_to_task(task_id, f"⚠️ Отправлен в Неполные: отсутствуют {', '.join(missing_params)}",
                                     "warning")
 
-                if category_key not in report_summary["Distribution by UCA Category"]:
-                    report_summary["Distribution by UCA Category"][category_key] = 0
-                report_summary["Distribution by UCA Category"][category_key] += 1
+                if category_key not in report_summary["Распределение по категориям UCA"]:
+                    report_summary["Распределение по категориям UCA"][category_key] = 0
+                report_summary["Распределение по категориям UCA"][category_key] += 1
 
                 os.makedirs(target_folder, exist_ok=True)
 
@@ -345,18 +393,18 @@ def parse_files_task(input_folder: str, task_id: str):
                     data_df = pd.read_csv(StringIO(data_str), sep="\t")
                 except Exception as e:
                     add_log_to_task(task_id, f"⚠️ Ошибка чтения Data в {file_name}: {e}", "error")
-                    if category_key != 'Incomplete':
-                        report_summary["UCA - Incomplete/Error"] += 1
-                        if category_key in report_summary["Distribution by UCA Category"]:
-                            report_summary["Distribution by UCA Category"][category_key] -= 1
-                        report_summary["Distribution by UCA Category"]["Incomplete"] = report_summary[
-                                                                                           "Distribution by UCA Category"].get(
-                            "Incomplete", 0) + 1
+                    if category_key != 'Неполные':
+                        report_summary["UCA - неполные/ошибки"] += 1
+                        if category_key in report_summary["Распределение по категориям UCA"]:
+                            report_summary["Распределение по категориям UCA"][category_key] -= 1
+                        report_summary["Распределение по категориям UCA"]["Неполные"] = report_summary[
+                                                                                           "Распределение по категориям UCA"].get(
+                            "Неполные", 0) + 1
 
-                    target_folder = os.path.join(output_folder, "Incomplete")
+                    target_folder = os.path.join(output_folder, relative_root, "Неполные")
                     os.makedirs(target_folder, exist_ok=True)
                     data_df = None
-                    category_key = "Incomplete"
+                    category_key = "Неполные"
 
                 # Сохранение
                 base_name = os.path.splitext(file_name)[0]
@@ -371,7 +419,7 @@ def parse_files_task(input_folder: str, task_id: str):
 
             # --- ОБРАБОТКА НЕ-UCA (УльтраЗвук) ---
             else:
-                report_summary["Non-UCA Files (УльтраЗвук)"] += 1
+                report_summary["УльтраЗвук файлы"] += 1
                 add_log_to_task(task_id, "➡️ Тип определен: УльтраЗвук", "info")
 
                 rows = []
@@ -382,14 +430,19 @@ def parse_files_task(input_folder: str, task_id: str):
 
                 if not rows:
                     add_log_to_task(task_id, f"⚠️ Файл {file_name} пуст", "warning")
-                    report_summary["Errors (Read/Other)"] += 1
+                    report_summary["Ошибки чтения"] += 1
                     continue
 
                 max_cols = max(len(r) for r in rows)
                 col_names = [f"Колонка_{i + 1}" for i in range(max_cols)]
                 df = pd.DataFrame([r + [''] * (max_cols - len(r)) for r in rows], columns=col_names)
 
-                ultrasound_folder = os.path.join(output_folder, "УльтраЗвук")
+                # Сохраняем структуру папок
+                if relative_root != ".":
+                    ultrasound_folder = os.path.join(output_folder, relative_root, "УльтраЗвук")
+                else:
+                    ultrasound_folder = os.path.join(output_folder, "УльтраЗвук")
+                    
                 os.makedirs(ultrasound_folder, exist_ok=True)
 
                 base_name = os.path.splitext(file_name)[0]
@@ -402,24 +455,25 @@ def parse_files_task(input_folder: str, task_id: str):
         add_log_to_task(task_id, "=" * 50, "info")
         add_log_to_task(task_id, "🎉 ИТОГОВЫЙ ОТЧЕТ", "success")
         add_log_to_task(task_id, "=" * 50, "info")
-        add_log_to_task(task_id, f"📁 Всего обработано: {report_summary['Total Files Processed']}", "info")
-        add_log_to_task(task_id, f"🔹 UCA-файлы: {report_summary['UCA Files']}", "info")
-        add_log_to_task(task_id, f"🔹 УльтраЗвук: {report_summary['Non-UCA Files (УльтраЗвук)']}", "info")
-        add_log_to_task(task_id, f"🔹 Incomplete/Errors: {report_summary['UCA - Incomplete/Error']}", "info")
-        add_log_to_task(task_id, f"🔹 Ошибки чтения: {report_summary['Errors (Read/Other)']}", "info")
+        add_log_to_task(task_id, f"📁 Всего обработано: {report_summary['Всего обработано']}", "info")
+        add_log_to_task(task_id, f"🔹 UCA-файлы: {report_summary['UCA файлы']}", "info")
+        add_log_to_task(task_id, f"🔹 УльтраЗвук: {report_summary['УльтраЗвук файлы']}", "info")
+        add_log_to_task(task_id, f"🔹 Неполные/Ошибки: {report_summary['UCA - неполные/ошибки']}", "info")
+        add_log_to_task(task_id, f"🔹 Ошибки чтения: {report_summary['Ошибки чтения']}", "info")
 
         add_log_to_task(task_id, "\n📊 РАСПРЕДЕЛЕНИЕ UCA-ФАЙЛОВ:", "info")
-        if report_summary["Distribution by UCA Category"]:
-            for category, count in report_summary["Distribution by UCA Category"].items():
+        if report_summary["Распределение по категориям UCA"]:
+            for category, count in report_summary["Распределение по категориям UCA"].items():
                 add_log_to_task(task_id, f"  - {category}: {count} шт.", "info")
         else:
             add_log_to_task(task_id, "  (Нет категоризированных UCA-файлов)", "info")
 
         add_log_to_task(task_id, "=" * 50, "info")
+        add_log_to_task(task_id, f"💾 Результаты сохранены в: {output_folder}", "success")
         add_log_to_task(task_id, "✅ Обработка завершена!", "success")
 
         return {
-            "processed": report_summary["Total Files Processed"],
+            "processed": report_summary["Всего обработано"],
             "output_folder": output_folder,
             "summary": report_summary
         }
@@ -435,7 +489,8 @@ def parse_files_task(input_folder: str, task_id: str):
 async def root():
     return {
         "message": "File Processor API",
-        "status": "running",
+        "статус": "работает",
+        "русская_версия": "API обработки файлов",
         "endpoints": [
             "/api/find-broken-files (POST) - поиск битых .tst файлов",
             "/api/parse-files (POST) - парсинг файлов",
@@ -447,58 +502,79 @@ async def root():
     }
 
 
+def get_folder_structure(base_path: str):
+    """Рекурсивно получает структуру папок"""
+    structure = []
+    
+    try:
+        for item in os.listdir(base_path):
+            item_path = os.path.join(base_path, item)
+            if os.path.isdir(item_path):
+                # Считаем .txt файлы в папке и подпапках
+                txt_count = 0
+                for root, dirs, files in os.walk(item_path):
+                    txt_count += len([f for f in files if f.lower().endswith('.txt')])
+                
+                folder_info = {
+                    "name": item,
+                    "path": item_path,
+                    "files_count": txt_count,
+                    "has_txt_files": txt_count > 0
+                }
+                
+                # Получаем вложенные папки (только один уровень для простоты)
+                subfolders = []
+                try:
+                    for sub_item in os.listdir(item_path):
+                        sub_item_path = os.path.join(item_path, sub_item)
+                        if os.path.isdir(sub_item_path):
+                            sub_txt_count = 0
+                            for root, dirs, files in os.walk(sub_item_path):
+                                sub_txt_count += len([f for f in files if f.lower().endswith('.txt')])
+                            
+                            if sub_txt_count > 0:  # Показываем только папки с файлами
+                                subfolders.append({
+                                    "name": sub_item,
+                                    "path": sub_item_path,
+                                    "files_count": sub_txt_count,
+                                    "has_txt_files": sub_txt_count > 0
+                                })
+                except PermissionError:
+                    pass
+                
+                if subfolders:
+                    folder_info["subfolders"] = sorted(subfolders, key=lambda x: x["name"])
+                
+                structure.append(folder_info)
+                
+    except PermissionError as e:
+        logger.error(f"Permission error accessing {base_path}: {e}")
+    except Exception as e:
+        logger.error(f"Error scanning {base_path}: {e}")
+    
+    return sorted(structure, key=lambda x: x["name"])
+
+
 @app.get("/api/folders")
 async def get_folders():
-    """Получает список папок в data директории"""
+    """Получает древовидную структуру папок в data директории"""
     data_dir = "/app/data"
 
     if not os.path.exists(data_dir):
         os.makedirs(data_dir, exist_ok=True)
 
-    folders = []
-
-    # Добавляем корневую папку data
-    folders.append({
-        "name": "data",
-        "path": data_dir,
-        "files_count": 0,
-        "is_root": True
-    })
-
-    # Сканируем папки в data
-    try:
-        for item in os.listdir(data_dir):
-            item_path = os.path.join(data_dir, item)
-            if os.path.isdir(item_path):
-                # Считаем файлы в папке
-                files = []
-                for root, dirs, filenames in os.walk(item_path):
-                    for file in filenames:
-                        if file.lower().endswith(('.tst', '.txt')):
-                            files.append(os.path.join(root, file))
-
-                folders.append({
-                    "name": item,
-                    "path": item_path,
-                    "files_count": len(files),
-                    "is_tests": item.lower() == "tests",
-                    "has_tst_files": any(f.endswith('.tst') for f in os.listdir(item_path) if
-                                         os.path.isfile(os.path.join(item_path, f))),
-                    "has_txt_files": any(
-                        f.endswith('.txt') for f in os.listdir(item_path) if os.path.isfile(os.path.join(item_path, f)))
-                })
-    except Exception as e:
-        logger.error(f"Error scanning folders: {e}")
-
+    # Получаем основную структуру папок
+    folders = get_folder_structure(data_dir)
+    
     return {
         "data_directory": data_dir,
-        "folders": sorted(folders, key=lambda x: (not x.get('is_tests', False), x["name"]))
+        "folders": folders
     }
 
 
 @app.post("/api/find-broken-files", response_model=TaskResponse)
 async def find_broken_files(request: PathRequest, background_tasks: BackgroundTasks):
-    """Запускает поиск битых файлов в указанной папке"""
+    """Запускает поиск битых файлов в указанной папке - ДЛЯ ГЛАВНОЙ СТРАНИЦЫ"""
     try:
         task_id = str(uuid.uuid4())
         input_path = request.path
@@ -526,7 +602,7 @@ async def find_broken_files(request: PathRequest, background_tasks: BackgroundTa
         }
 
         add_log_to_task(task_id, f"📁 Обрабатываем папку: {os.path.basename(input_path)}", "info")
-        add_log_to_task(task_id, "⏳ Начинаем обработку...", "info")
+        add_log_to_task(task_id, "⏳ Начинаем поиск битых файлов...", "info")
 
         # Запускаем фоновую задачу
         background_tasks.add_task(
@@ -542,13 +618,13 @@ async def find_broken_files(request: PathRequest, background_tasks: BackgroundTa
         )
 
     except Exception as e:
-        logger.error(f"Error in find-broken-files: {e}")
+        logger.error(f"Ошибка в find-broken-files: {e}")
         raise HTTPException(status_code=500, detail=f"Ошибка запуска задачи: {str(e)}")
 
 
 @app.post("/api/parse-files", response_model=TaskResponse)
 async def parse_files_endpoint(request: PathRequest, background_tasks: BackgroundTasks):
-    """Запускает парсинг файлов в указанной папке"""
+    """Запускает парсинг файлов в указанной папке - ДЛЯ СТРАНИЦЫ ПАРСЕРА"""
     try:
         task_id = str(uuid.uuid4())
         input_path = request.path
@@ -592,14 +668,14 @@ async def parse_files_endpoint(request: PathRequest, background_tasks: Backgroun
         )
 
     except Exception as e:
-        logger.error(f"Error in parse-files: {e}")
+        logger.error(f"Ошибка в parse-files: {e}")
         raise HTTPException(status_code=500, detail=f"Ошибка запуска задачи: {str(e)}")
 
 
 # ========== ФОНОВЫЕ ЗАДАЧИ ==========
 
 async def process_find_broken_task(task_id: str, input_path: str):
-    """Фоновая задача поиска битых файлов"""
+    """Фоновая задача поиска битых файлов - ДЛЯ ГЛАВНОЙ СТРАНИЦЫ"""
     try:
         add_log_to_task(task_id, "🔍 Начинаем поиск битых .tst файлов...", "info")
 
@@ -607,7 +683,7 @@ async def process_find_broken_task(task_id: str, input_path: str):
         loop = asyncio.get_event_loop()
         result = await loop.run_in_executor(
             None,
-            isolate_one_broken_tst,
+            find_all_broken_files,  # ИСПРАВЛЕНО: используем новую функцию
             input_path,
             task_id
         )
@@ -620,17 +696,17 @@ async def process_find_broken_task(task_id: str, input_path: str):
         current_tasks[task_id]["completed_at"] = datetime.now().isoformat()
         current_tasks[task_id]["result"] = result
 
-        add_log_to_task(task_id, "✅ Задача завершена!", "success")
+        add_log_to_task(task_id, "✅ Задача поиска завершена!", "success")
 
     except Exception as e:
-        logger.error(f"Error in process_find_broken_task: {e}")
+        logger.error(f"Ошибка в process_find_broken_task: {e}")
         add_log_to_task(task_id, f"❌ Ошибка: {str(e)}", "error")
         current_tasks[task_id]["status"] = "failed"
         current_tasks[task_id]["error"] = str(e)
 
 
 async def process_parse_task(task_id: str, input_path: str):
-    """Фоновая задача парсинга"""
+    """Фоновая задача парсинга - ДЛЯ СТРАНИЦЫ ПАРСЕРА"""
     try:
         add_log_to_task(task_id, "🔍 Начинаем парсинг файлов...", "info")
 
@@ -650,7 +726,7 @@ async def process_parse_task(task_id: str, input_path: str):
         add_log_to_task(task_id, "✅ Парсинг завершен!", "success")
 
     except Exception as e:
-        logger.error(f"Error in process_parse_task: {e}")
+        logger.error(f"Ошибка в process_parse_task: {e}")
         add_log_to_task(task_id, f"❌ Ошибка: {str(e)}", "error")
         current_tasks[task_id]["status"] = "failed"
         current_tasks[task_id]["error"] = str(e)

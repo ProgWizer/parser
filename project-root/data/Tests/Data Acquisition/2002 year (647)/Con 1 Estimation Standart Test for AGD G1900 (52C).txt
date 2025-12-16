@@ -1,0 +1,116 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #1
+Instrument Type	Consistometer
+Instrument Serial Number	113
+Test Start Date	30.05.2002
+Test Start Time	21:11:43
+Test Stop Date	30.05.2002
+Test Stop Time	22:33:30
+Test Length	1:21:47
+Final Sample Time Offset	1:21:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 35.6(28min); T: 52C(28min); tap water, no class G
+Information	WellID	
+Information	Customer	Usinsk
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	no
+Information	Density	1900
+Information	BHCT	52
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	Standart test
+Calculated Value	Thickening_Time	1:14:00
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	24 °C
+Final Temperature (°C)	50 °C
+Initial Pressure (MPa)	1 MPa
+Final Pressure (MPa)	36 MPa
+Initial Consistency (Bc)	22 Bc
+Final Consistency (Bc)	97 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	24	1	22
+0:01:00	24	3	22
+0:02:00	24	4	22
+0:03:00	24	5	22
+0:04:00	24	7	22
+0:05:00	24	8	23
+0:06:00	25	9	22
+0:07:00	26	11	23
+0:08:00	27	12	23
+0:09:00	28	13	25
+0:10:00	29	15	23
+0:11:00	31	16	23
+0:12:00	33	16	23
+0:13:00	34	18	24
+0:14:00	36	19	23
+0:15:00	37	20	23
+0:16:00	39	21	23
+0:17:00	40	22	23
+0:18:00	41	23	23
+0:19:00	42	24	22
+0:20:00	43	26	23
+0:21:00	44	27	23
+0:22:00	45	28	26
+0:23:00	46	29	25
+0:24:00	47	30	27
+0:25:00	48	32	24
+0:26:00	48	33	28
+0:27:00	49	34	25
+0:28:00	50	35	23
+0:29:00	51	36	23
+0:30:00	52	36	23
+0:31:00	52	36	23
+0:32:00	53	36	23
+0:33:00	54	36	23
+0:34:00	54	36	23
+0:35:00	54	36	23
+0:36:00	54	36	23
+0:37:00	54	36	23
+0:38:00	53	36	23
+0:39:00	53	36	23
+0:40:00	52	36	23
+0:41:00	52	36	23
+0:42:00	51	36	23
+0:43:00	51	36	28
+0:44:00	50	36	28
+0:45:00	50	36	28
+0:46:00	50	36	28
+0:47:00	49	37	29
+0:48:00	49	37	30
+0:49:00	49	37	31
+0:50:00	49	37	30
+0:51:00	49	37	31
+0:52:00	49	37	31
+0:53:00	50	37	33
+0:54:00	50	37	33
+0:55:00	50	37	35
+0:56:00	50	37	35
+0:57:00	51	36	36
+0:58:00	51	36	39
+0:59:00	51	36	41
+1:00:00	51	36	43
+1:01:00	51	36	44
+1:02:00	51	36	45
+1:03:00	51	36	48
+1:04:00	51	36	51
+1:05:00	51	36	53
+1:06:00	51	36	56
+1:07:00	51	36	58
+1:08:00	51	36	60
+1:09:00	51	36	63
+1:10:00	51	36	65
+1:11:00	50	36	67
+1:12:00	50	36	69
+1:13:00	50	36	72
+1:14:00	50	36	74
+1:15:00	50	36	77
+1:16:00	50	36	78
+1:17:00	50	36	84
+1:18:00	50	36	86
+1:19:00	50	36	91
+1:20:00	50	36	97
+1:21:00	50	36	97

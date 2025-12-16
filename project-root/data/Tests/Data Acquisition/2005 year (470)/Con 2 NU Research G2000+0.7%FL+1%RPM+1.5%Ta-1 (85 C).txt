@@ -1,0 +1,44 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#2
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	24.03.2005
+Test Start Time	22:06:35
+Test Stop Date	24.03.2005
+Test Stop Time	22:20:37
+Test Length	0:14:02
+Final Sample Time Offset	0:13:31
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	
+Information	WellID	
+Information	Customer	
+Information	CementClass	
+Information	CementMfr	
+Information	Additives	
+Information	Density	
+Information	BHCT	
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	30Bc - TT	0:01:00
+Calculated Value	70Bc - TT	0:12:31
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	28 °C
+Final Temperature (°C)	24 °C
+Initial Pressure (MPa)	0,6 MPa
+Final Pressure (MPa)	4,1 MPa
+Initial Consistency (Bc)	56 Bc
+Final Consistency (Bc)	130 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	28	0,6	56
+0:01:00	27	0,6	80
+0:02:00	26	0,5	62
+0:03:00	26	0,6	-0
+0:04:00	26	0,6	53
+0:11:31			
+0:11:31	24	2,9	97
+0:12:31	24	3,6	87
+0:13:31	24	4,1	130

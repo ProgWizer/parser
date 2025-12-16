@@ -1,0 +1,43 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	4262 Right
+Instrument Type	Model 4262 Twin Cell UCA
+Instrument Serial Number	111R
+Test Start Date	31.08.2012
+Test Start Time	13:32:07
+Test Stop Date	
+Test Stop Time	
+Test Length	
+Final Sample Time Offset	
+Controller Schedule Name	
+Sampling Period	30 seconds
+Comments	T: 73C(40min); tap water
+Information	WellID	Research
+Information	Customer	Trican
+Information	EngName	Lebedev Pavel
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	49.5%ASPM+1.5%PPB+1.5%SMS+0.38%R-7
+Information	Density	1250
+Information	BHCT	73
+Information	BHST	85
+Information	FluidLoss	n/a
+Information	JobType	Production csg
+Calculated Value	CS_0.34 MPa	N/A
+Calculated Value	CS_3.4 MPa	N/A
+Calculated Value	CS_Time12h	N/A
+Calculated Value	CS_Time24h	N/A
+Calculated Value	CS_Time48h	N/A
+Calculated Value	CS_Time72h	N/A
+Calculated Curve	Compressive Strength	Compressive strength type A (less than 14 lb/gal)
+Initial Temperature (°C)	25 °C
+Initial Transit Time (microsec/in)	14,88 microsec/in
+Initial Compressive Strength (MPa)	0,0 MPa
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Transit Time (microsec/in)	Compressive Strength (MPa)
+0:00:00	25	14,88	0,0
+0:00:30	25	14,90	0,0
+0:01:00	25	14,91	0,0
+0:01:30	26	14,91	0,0
+0:02:00	26	14,91	0,0
+0:02:30	26	14,91	0,0

@@ -1,0 +1,42 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	4262L
+Instrument Type	Model 4262 Twin Cell UCA
+Instrument Serial Number	111L
+Test Start Date	09.03.2004
+Test Start Time	18:04:49
+Test Stop Date	
+Test Stop Time	
+Test Length	
+Final Sample Time Offset	
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	
+Information	WellID	
+Information	Customer	
+Information	EngName	
+Information	CementClass	
+Information	CementMfr	
+Information	Additives	
+Information	Density	
+Information	BHCT	
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	CS_50	N/A
+Calculated Value	CS_500	N/A
+Calculated Value	CS_Time8h	N/A
+Calculated Value	CS_Time16h	N/A
+Calculated Value	CS_Time24h	N/A
+Calculated Value	CS_Time48h	N/A
+Calculated Value	CS_Time72h	N/A
+Calculated Curve	Compressive Strength	Compressive strength type B (more than 14 lb/gal)
+Initial Temperature (°C)	17 °C
+Initial Transit Time (microsec/in)	16,49 microsec/in
+Initial Compressive Strength (MPa)	0,00 MPa
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Transit Time (microsec/in)	Compressive Strength (MPa)
+0:00:00	17	16,49	0,00
+0:01:00	17	16,51	0,00
+0:02:00	17	16,53	0,00
+0:03:00	17	16,54	0,00

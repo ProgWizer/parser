@@ -1,0 +1,94 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #1
+Instrument Type	Consistometer
+Instrument Serial Number	113
+Test Start Date	20.06.2002
+Test Start Time	3:32:37
+Test Stop Date	20.06.2002
+Test Stop Time	4:31:57
+Test Length	0:59:20
+Final Sample Time Offset	0:59:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 30(35min); T: 55C(35min); field water, dry-blending, 1st stage
+Information	WellID	62/na
+Information	Customer	Kogalym
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	1.2%TDF-1+0.2%TC-101
+Information	Density	1900
+Information	BHCT	55
+Information	BHST	70
+Information	FluidLoss	22cc/30min
+Information	JobType	146 mm csg tail slurry
+Calculated Value	Thickening_Time	N/A
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	26 °C
+Final Temperature (°C)	46 °C
+Initial Pressure (MPa)	2 MPa
+Final Pressure (MPa)	0 MPa
+Initial Consistency (Bc)	18 Bc
+Final Consistency (Bc)	22 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	26	2	18
+0:01:00	26	3	21
+0:02:00	26	4	20
+0:03:00	26	5	20
+0:04:00	26	6	20
+0:05:00	27	7	20
+0:06:00	27	8	20
+0:07:00	28	9	20
+0:08:00	29	10	20
+0:09:00	30	11	20
+0:10:00	32	11	20
+0:11:00	33	12	21
+0:12:00	35	13	20
+0:13:00	36	13	20
+0:14:00	38	14	20
+0:15:00	39	15	20
+0:16:00	40	15	20
+0:17:00	41	16	21
+0:18:00	42	17	21
+0:19:00	43	18	22
+0:20:00	44	18	21
+0:21:00	44	19	22
+0:22:00	45	20	21
+0:23:00	45	21	20
+0:24:00	45	22	21
+0:25:00	46	22	20
+0:26:00	46	23	20
+0:27:00	47	24	20
+0:28:00	48	25	20
+0:29:00	48	26	20
+0:30:00	49	26	22
+0:31:00	50	27	20
+0:32:00	51	28	21
+0:33:00	52	29	21
+0:34:00	53	30	21
+0:35:00	53	30	22
+0:36:00	54	31	22
+0:37:00	55	30	22
+0:38:00	55	30	21
+0:39:00	56	30	22
+0:40:00	56	30	22
+0:41:00	56	30	22
+0:42:00	56	30	21
+0:43:00	56	30	22
+0:44:00	56	30	22
+0:45:00	55	30	21
+0:46:00	55	23	21
+0:47:00	55	17	22
+0:48:00	55	12	22
+0:49:00	55	8	22
+0:50:00	55	6	21
+0:51:00	55	4	20
+0:52:00	54	1	20
+0:53:00	54	1	20
+0:54:00	54	1	20
+0:55:00	54	1	20
+0:56:00	54	0	20
+0:57:00	54	0	20
+0:58:00	53	0	20
+0:59:00	46	0	22

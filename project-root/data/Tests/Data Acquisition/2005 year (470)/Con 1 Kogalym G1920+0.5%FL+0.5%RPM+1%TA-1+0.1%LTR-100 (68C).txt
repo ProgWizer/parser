@@ -1,0 +1,108 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#1
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	113
+Test Start Date	05.10.2005
+Test Start Time	2:18:43
+Test Stop Date	05.10.2005
+Test Stop Time	3:30:44
+Test Length	1:12:01
+Final Sample Time Offset	1:12:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 38(41), T:68(41)Sample cement from pocket #1
+Information	WellID	6/611
+Information	Customer	LUK-AIK
+Information	CementClass	PCT-I-G
+Information	CementMfr	Duckerhoff
+Information	Additives	0.5FL+0.5RPM+1TA-1+0.1LTR-100
+Information	Density	1920
+Information	BHCT	68
+Information	BHST	85
+Information	FluidLoss	
+Information	JobType	146 mm Production csg.
+Calculated Value	30Bc - TT	1:06:00
+Calculated Value	70Bc - TT	1:12:00
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	27 °C
+Final Temperature (°C)	66 °C
+Initial Pressure (MPa)	1,6 MPa
+Final Pressure (MPa)	38,7 MPa
+Initial Consistency (Bc)	20 Bc
+Final Consistency (Bc)	70 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	27	1,6	20
+0:01:00	27	2,9	15
+0:02:00	27	3,6	15
+0:03:00	27	4,8	20
+0:04:00	27	6,2	15
+0:05:00	27	7,1	15
+0:06:00	27	8,0	15
+0:07:00	27	8,9	16
+0:08:00	28	9,8	25
+0:09:00	29	10,6	24
+0:10:00	30	11,7	23
+0:11:00	32	12,3	20
+0:12:00	34	13,2	19
+0:13:00	37	14,3	17
+0:14:00	40	15,0	18
+0:15:00	42	15,4	22
+0:16:00	45	15,9	20
+0:17:00	47	17,1	20
+0:18:00	49	17,8	19
+0:19:00	51	18,4	19
+0:20:00	53	19,3	14
+0:21:00	54	20,6	22
+0:22:00	54	21,3	19
+0:23:00	55	22,3	20
+0:24:00	55	23,3	20
+0:25:00	55	23,9	18
+0:26:00	55	24,8	17
+0:27:00	54	25,6	17
+0:28:00	54	26,8	17
+0:29:00	54	28,2	17
+0:30:00	54	29,0	17
+0:31:00	54	29,6	16
+0:32:00	54	30,5	16
+0:33:00	55	31,5	16
+0:34:00	56	32,4	16
+0:35:00	57	33,3	15
+0:36:00	59	34,4	15
+0:37:00	61	35,1	16
+0:38:00	63	36,1	16
+0:39:00	65	37,0	18
+0:40:00	67	37,5	19
+0:41:00	69	37,8	19
+0:42:00	71	38,4	18
+0:43:00	73	37,9	22
+0:44:00	74	38,3	20
+0:45:00	75	38,0	18
+0:46:00	76	38,1	15
+0:47:00	76	37,9	16
+0:48:00	76	37,8	21
+0:49:00	76	38,2	21
+0:50:00	75	38,0	21
+0:51:00	74	38,2	21
+0:52:00	73	38,2	21
+0:53:00	72	38,1	22
+0:54:00	71	38,1	18
+0:55:00	70	37,9	20
+0:56:00	69	38,1	16
+0:57:00	68	38,1	16
+0:58:00	67	38,0	15
+0:59:00	67	38,4	37
+1:00:00	66	38,7	15
+1:01:00	65	38,6	15
+1:02:00	65	38,7	15
+1:03:00	65	38,9	26
+1:04:00	64	38,3	28
+1:05:00	64	38,7	33
+1:06:00	64	38,6	37
+1:07:00	64	38,7	43
+1:08:00	64	38,5	58
+1:09:00	64	38,5	66
+1:10:00	65	38,4	63
+1:11:00	65	39,0	79
+1:12:00	66	38,7	70

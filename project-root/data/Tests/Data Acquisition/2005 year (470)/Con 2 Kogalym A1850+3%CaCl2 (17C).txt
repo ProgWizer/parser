@@ -1,0 +1,104 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#2
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	11.11.2005
+Test Start Time	4:04:55
+Test Stop Date	11.11.2005
+Test Stop Time	5:13:24
+Test Length	1:08:29
+Final Sample Time Offset	1:08:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 10(30min), T:17C(30min), tap water, dry blending
+Information	WellID	6/11 vz
+Information	Customer	LUK-AIK
+Information	CementClass	A
+Information	CementMfr	
+Information	Additives	3%CaCl2
+Information	Density	1850
+Information	BHCT	17
+Information	BHST	25
+Information	FluidLoss	
+Information	JobType	426 mm production csg.
+Calculated Value	30Bc - TT	0:11:00
+Calculated Value	70Bc - TT	N/A
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	35 °C
+Final Temperature (°C)	16 °C
+Initial Pressure (MPa)	1,5 MPa
+Final Pressure (MPa)	8,1 MPa
+Initial Consistency (Bc)	25 Bc
+Final Consistency (Bc)	50 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	35	1,5	25
+0:01:00	34	1,9	27
+0:02:00	34	2,3	27
+0:03:00	33	2,6	27
+0:04:00	33	2,8	26
+0:05:00	32	3,2	26
+0:06:00	32	3,5	32
+0:07:00	31	3,5	29
+0:08:00	31	4,2	36
+0:09:00	30	4,4	25
+0:10:00	30	4,4	36
+0:11:00	29	4,9	49
+0:12:00	29	5,1	42
+0:13:00	28	5,3	31
+0:14:00	28	5,3	33
+0:15:00	28	6,1	38
+0:16:00	27	6,6	41
+0:17:00	27	6,4	31
+0:18:00	26	6,7	34
+0:19:00	26	7,3	30
+0:20:00	26	7,1	31
+0:21:00	25	7,6	29
+0:22:00	25	7,5	27
+0:23:00	25	7,7	24
+0:24:00	24	8,2	24
+0:25:00	24	8,3	24
+0:26:00	24	8,7	27
+0:27:00	24	9,0	30
+0:28:00	23	9,3	29
+0:29:00	23	9,6	25
+0:30:00	23	9,7	26
+0:31:00	23	10,4	29
+0:32:00	22	10,0	30
+0:33:00	22	9,6	27
+0:34:00	22	10,1	29
+0:35:00	22	9,8	29
+0:36:00	21	10,0	30
+0:37:00	21	9,9	29
+0:38:00	21	10,3	31
+0:39:00	21	10,0	40
+0:40:00	21	10,0	37
+0:41:00	20	10,1	36
+0:42:00	20	9,8	35
+0:43:00	20	10,0	35
+0:44:00	20	9,8	35
+0:45:00	20	10,2	41
+0:46:00	19	9,9	23
+0:47:00	19	9,7	24
+0:48:00	19	9,8	24
+0:49:00	19	10,1	26
+0:50:00	19	9,7	22
+0:51:00	18	10,1	24
+0:52:00	18	9,7	23
+0:53:00	18	9,7	24
+0:54:00	18	10,3	24
+0:55:00	18	10,2	25
+0:56:00	18	10,0	26
+0:57:00	17	9,8	23
+0:58:00	17	10,0	23
+0:59:00	17	9,7	23
+1:00:00	17	10,0	27
+1:01:00	17	9,9	24
+1:02:00	17	9,8	23
+1:03:00	17	10,0	23
+1:04:00	17	9,7	23
+1:05:00	17	9,9	23
+1:06:00	16	9,7	23
+1:07:00	16	9,8	22
+1:08:00	16	8,1	50

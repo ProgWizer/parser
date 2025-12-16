@@ -1,0 +1,91 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222-2
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	09.04.2008
+Test Start Time	13:11:37
+Test Stop Date	09.04.2008
+Test Stop Time	14:06:38
+Test Length	0:55:01
+Final Sample Time Offset	0:55:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	P:25MPa(30);T:60C(30);
+Information	WellID	research
+Information	Customer	
+Information	CementClass	G
+Information	CementMfr	
+Information	Additives	0.60%FL-34
+Information	Density	
+Information	BHCT	60
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	30Bc - TT	N/A
+Calculated Value	70Bc - TT	N/A
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	30 °C
+Final Temperature (°C)	28 °C
+Initial Pressure (MPa)	0,7 MPa
+Final Pressure (MPa)	0,1 MPa
+Initial Consistency (Bc)	11 Bc
+Final Consistency (Bc)	-0 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	30	0,7	11
+0:01:00	31	2,8	11
+0:02:00	31	3,7	11
+0:03:00	32	4,6	11
+0:04:00	32	5,4	11
+0:05:00	34	6,0	11
+0:06:00	35	6,8	11
+0:07:00	36	7,8	11
+0:08:00	37	8,4	11
+0:09:00	38	9,1	11
+0:10:00	39	10,1	10
+0:11:00	40	10,8	11
+0:12:00	41	11,5	11
+0:13:00	42	12,2	11
+0:14:00	43	12,9	11
+0:15:00	44	13,7	11
+0:16:00	46	14,8	11
+0:17:00	47	15,6	11
+0:18:00	47	16,3	11
+0:19:00	49	17,1	11
+0:20:00	50	17,9	11
+0:21:00	50	18,6	11
+0:22:00	52	19,4	11
+0:23:00	53	20,3	11
+0:24:00	54	21,1	11
+0:25:00	55	21,9	11
+0:26:00	56	22,7	12
+0:27:00	57	23,6	12
+0:28:00	58	23,9	12
+0:29:00	59	24,7	12
+0:30:00	59	25,4	12
+0:31:00	60	25,5	12
+0:32:00	61	25,2	12
+0:33:00	61	25,2	13
+0:34:00	61	25,1	12
+0:35:00	61	25,0	13
+0:36:00	61	25,3	13
+0:37:00	61	25,1	12
+0:38:00	61	20,3	12
+0:39:00	60	8,0	12
+0:40:00	60	1,5	12
+0:41:00	60	0,2	12
+0:42:00	46	0,1	1
+0:43:00	37	0,2	-0
+0:44:00	33	0,1	0
+0:45:00	31	0,1	0
+0:46:00	28	0,2	0
+0:47:00	28	0,2	-0
+0:48:00	27	0,1	0
+0:49:00	28	0,1	-0
+0:50:00	28	0,2	-1
+0:51:00	27	0,2	0
+0:52:00	28	0,2	-1
+0:53:00	28	0,2	-0
+0:54:00	28	0,1	-1
+0:55:00	28	0,1	-0

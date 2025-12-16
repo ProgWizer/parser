@@ -1,0 +1,35 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #2
+Instrument Type	Consistometer
+Instrument Serial Number	128
+Test Start Date	03.12.2002
+Test Start Time	15:18:08
+Test Stop Date	
+Test Stop Time	
+Test Length	
+Final Sample Time Offset	
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 45(70min), T:128C(70min), field water, 0.18%NTF bwoc, premix
+Information	WellID	Sarmatskaya 1
+Information	Customer	LukoilShelf
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	30%SF+0.138%NTF bwodb
+Information	Density	1930
+Information	BHCT	128
+Information	BHST	128
+Information	FluidLoss	
+Information	JobType	PLUG
+Calculated Value	Thickening_Time	N/A
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	21 °C
+Initial Pressure (MPa)	2 MPa
+Initial Consistency (Bc)	8 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	21	2	8
+0:01:00	21	3	5
+0:02:00	20	3	9
+0:03:00	21	5	8

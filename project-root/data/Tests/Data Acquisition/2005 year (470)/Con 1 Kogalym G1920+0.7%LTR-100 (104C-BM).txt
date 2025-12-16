@@ -1,0 +1,35 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#1
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	113
+Test Start Date	29.01.2005
+Test Start Time	6:19:14
+Test Stop Date	
+Test Stop Time	
+Test Length	
+Final Sample Time Offset	
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	
+Information	WellID	2-25-04
+Information	Customer	Rospan
+Information	CementClass	PCT-I-G
+Information	CementMfr	Duckerhoff
+Information	Additives	0.7%LTR-100
+Information	Density	1920
+Information	BHCT	104
+Information	BHST	104
+Information	FluidLoss	
+Information	JobType	339.7 mm Plug
+Calculated Value	30Bc - TT	N/A
+Calculated Value	70Bc - TT	N/A
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	23 °C
+Initial Pressure (MPa)	0,7 MPa
+Initial Consistency (Bc)	5 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	23	0,7	5
+0:01:00	23	0,7	4
+0:02:00	23	0,8	2

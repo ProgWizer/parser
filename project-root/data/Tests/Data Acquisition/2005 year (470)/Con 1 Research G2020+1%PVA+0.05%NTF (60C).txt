@@ -1,0 +1,103 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#1
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	113
+Test Start Date	20.04.2005
+Test Start Time	21:47:53
+Test Stop Date	20.04.2005
+Test Stop Time	22:54:53
+Test Length	1:07:00
+Final Sample Time Offset	1:07:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 33(35min), T: 60C(35min), tap water, PVA premix
+Information	WellID	
+Information	Customer	
+Information	CementClass	G
+Information	CementMfr	Duckerhoff
+Information	Additives	1%PVA+0.05%NTF
+Information	Density	2020
+Information	BHCT	60
+Information	BHST	
+Information	FluidLoss	n/a
+Information	JobType	Research
+Calculated Value	30Bc - TT	0:22:00
+Calculated Value	70Bc - TT	1:07:00
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	25 °C
+Final Temperature (°C)	60 °C
+Initial Pressure (MPa)	1,0 MPa
+Final Pressure (MPa)	33,3 MPa
+Initial Consistency (Bc)	22 Bc
+Final Consistency (Bc)	75 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	25	1,0	22
+0:01:00	25	2,7	25
+0:02:00	25	3,4	23
+0:03:00	25	4,3	21
+0:04:00	26	5,4	22
+0:05:00	27	6,3	21
+0:06:00	28	7,1	24
+0:07:00	29	8,0	23
+0:08:00	31	8,7	27
+0:09:00	32	9,9	27
+0:10:00	33	10,6	25
+0:11:00	34	11,7	26
+0:12:00	36	12,4	24
+0:13:00	37	13,4	29
+0:14:00	38	14,2	29
+0:15:00	39	15,0	27
+0:16:00	40	15,8	31
+0:17:00	41	16,8	26
+0:18:00	42	17,8	30
+0:19:00	44	18,8	30
+0:20:00	45	19,3	29
+0:21:00	46	20,4	31
+0:22:00	47	21,2	34
+0:23:00	47	22,2	32
+0:24:00	48	23,0	34
+0:25:00	49	24,0	34
+0:26:00	50	24,8	34
+0:27:00	51	25,6	35
+0:28:00	52	26,7	37
+0:29:00	53	27,4	37
+0:30:00	54	28,4	39
+0:31:00	55	29,3	45
+0:32:00	56	30,4	42
+0:33:00	57	31,0	46
+0:34:00	58	31,8	45
+0:35:00	59	32,8	49
+0:36:00	60	33,2	55
+0:37:00	61	33,3	52
+0:38:00	62	33,2	52
+0:39:00	62	33,0	49
+0:40:00	62	33,1	57
+0:41:00	62	33,2	59
+0:42:00	62	33,0	61
+0:43:00	62	33,0	60
+0:44:00	62	33,2	57
+0:45:00	62	33,0	56
+0:46:00	61	33,0	66
+0:47:00	61	33,3	64
+0:48:00	61	33,2	60
+0:49:00	61	33,2	58
+0:50:00	61	33,1	59
+0:51:00	61	33,0	65
+0:52:00	61	33,1	62
+0:53:00	60	33,1	61
+0:54:00	60	33,0	61
+0:55:00	60	33,1	61
+0:56:00	60	33,1	61
+0:57:00	60	33,1	61
+0:58:00	60	33,1	61
+0:59:00	60	33,0	61
+1:00:00	60	33,1	66
+1:01:00	60	33,1	68
+1:02:00	60	33,1	65
+1:03:00	60	33,1	65
+1:04:00	60	33,2	66
+1:05:00	60	33,2	66
+1:06:00	60	33,3	71
+1:07:00	60	33,3	75

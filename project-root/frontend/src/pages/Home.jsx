@@ -375,7 +375,7 @@ function Home() {
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
-        Главная страница
+        Поиск битых файлов
       </Typography>
 
       <Paper elevation={3} sx={{ p: 3, mb: 3 }}>

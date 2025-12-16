@@ -74,21 +74,6 @@ function History({ isOpen, onClose }) {
       if (response.ok) {
         const data = await response.json()
         console.log('✅ Загружена история с сервера:', data.history.length, 'записей')
-        
-        // Отладочная информация для первых 3 записей
-        data.history.slice(0, 3).forEach((item, index) => {
-          console.log(`Запись ${index} структура:`, {
-            id: item.id,
-            taskId: item.taskId,
-            hasLogsField: !!item.logs,
-            logsIsArray: Array.isArray(item.logs),
-            logsLength: item.logs?.length || 0,
-            hasResultField: !!item.result,
-            resultHasLogs: !!item.result?.logs,
-            type: item.type
-          })
-        })
-        
         setHistory(data.history)
       } else {
         console.warn('Сервер недоступен')
@@ -120,7 +105,6 @@ function History({ isOpen, onClose }) {
     console.log('=== ПРОСМОТР ЛОГОВ ===');
     console.log('Задача ID:', item.id || item.taskId);
     console.log('Тип задачи:', item.type);
-    console.log('Исходный объект item:', item);
     
     setSelectedTaskId(item.id || item.taskId);
     setSelectedTaskName(item.folderName || 'Неизвестная задача');
@@ -130,10 +114,6 @@ function History({ isOpen, onClose }) {
     
     // 1. Пробуем получить логи из item.logs (прямое поле)
     if (item.logs) {
-      console.log('🔍 Проверяем item.logs:', item.logs);
-      console.log('Тип item.logs:', typeof item.logs);
-      console.log('Is array?', Array.isArray(item.logs));
-      
       if (Array.isArray(item.logs) && item.logs.length > 0) {
         console.log('✅ Логи найдены в item.logs:', item.logs.length);
         logsToDisplay = item.logs;
@@ -197,7 +177,6 @@ function History({ isOpen, onClose }) {
         console.log('✅ Данные получены с сервера:');
         console.log('Статус задачи:', data.status);
         console.log('Тип задачи:', data.type);
-        console.log('Структура ответа:', data);
         
         let logs = [];
         
@@ -511,26 +490,6 @@ function History({ isOpen, onClose }) {
                               </IconButton>
                             </Tooltip>
                           )}
-                          <Tooltip title="Информация о записи (консоль)">
-                            <IconButton
-                              size="small"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                console.log('=== ИНФОРМАЦИЯ О ЗАПИСИ ===')
-                                console.log('ID:', item.id || item.taskId)
-                                console.log('Type:', item.type)
-                                console.log('Status:', item.status)
-                                console.log('Folder:', item.folderName)
-                                console.log('Logs field:', item.logs)
-                                console.log('Logs type:', typeof item.logs)
-                                console.log('Logs is array:', Array.isArray(item.logs))
-                                console.log('Result field:', item.result)
-                                console.log('Full item:', item)
-                              }}
-                            >
-                              <InfoIcon fontSize="small" />
-                            </IconButton>
-                          </Tooltip>
                           <Tooltip title="Удалить из истории">
                             <IconButton
                               size="small"
@@ -730,7 +689,7 @@ function History({ isOpen, onClose }) {
           </Button>
           <Button onClick={() => setViewDialogOpen(false)}>Закрыть</Button>
         </DialogActions>
-      </Dialog> 
+      </Dialog>
     </Dialog>
   )
 }

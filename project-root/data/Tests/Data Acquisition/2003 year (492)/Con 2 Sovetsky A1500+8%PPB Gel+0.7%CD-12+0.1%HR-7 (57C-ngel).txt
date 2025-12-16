@@ -1,0 +1,101 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#2
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	04.04.2003
+Test Start Time	10:19:21
+Test Stop Date	04.04.2003
+Test Stop Time	11:24:54
+Test Length	1:05:33
+Final Sample Time Offset	1:05:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 25(30min) T:57(30min), tap water, all dry-blending
+Information	WellID	
+Information	Customer	URAYNEFTEGAZ
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	8%PPB Gel+0.7%CD-12+0.1%HR-7
+Information	Density	1500
+Information	BHCT	57
+Information	BHST	70
+Information	FluidLoss	
+Information	JobType	146 mm csg lead slurry
+Calculated Value	30Bc - TT	N/A
+Calculated Value	70Bc - TT	N/A
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	24 °C
+Final Temperature (°C)	85 °C
+Initial Pressure (MPa)	1,7 MPa
+Final Pressure (MPa)	25,0 MPa
+Initial Consistency (Bc)	4 Bc
+Final Consistency (Bc)	0 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	24	1,7	4
+0:01:00	25	2,7	4
+0:02:00	25	3,7	4
+0:03:00	25	4,2	1
+0:04:00	25	5,1	1
+0:05:00	25	5,9	1
+0:06:00	26	7,2	1
+0:07:00	26	8,1	1
+0:08:00	26	8,7	1
+0:09:00	26	9,7	3
+0:10:00	26	10,4	1
+0:11:00	26	11,1	1
+0:12:00	27	11,8	1
+0:13:00	27	12,5	1
+0:14:00	28	13,5	1
+0:15:00	28	14,4	14
+0:16:00	29	14,7	1
+0:17:00	30	15,4	1
+0:18:00	31	16,1	1
+0:19:00	33	17,5	1
+0:20:00	34	18,3	1
+0:21:00	35	18,8	11
+0:22:00	37	19,4	1
+0:23:00	39	20,4	3
+0:24:00	40	21,3	1
+0:25:00	42	21,8	3
+0:26:00	44	22,2	10
+0:27:00	47	23,5	7
+0:28:00	49	24,3	0
+0:29:00	51	24,8	0
+0:30:00	54	25,4	0
+0:31:00	57	25,5	0
+0:32:00	59	25,7	3
+0:33:00	62	25,7	26
+0:34:00	64	25,5	6
+0:35:00	67	25,4	0
+0:36:00	70	25,3	0
+0:37:00	72	25,0	1
+0:38:00	74	25,1	0
+0:39:00	77	25,4	0
+0:40:00	79	25,0	0
+0:41:00	81	25,1	0
+0:42:00	82	24,8	0
+0:43:00	84	25,1	0
+0:44:00	85	25,1	0
+0:45:00	86	25,2	0
+0:46:00	87	24,9	0
+0:47:00	88	25,1	0
+0:48:00	88	25,1	0
+0:49:00	89	25,4	0
+0:50:00	89	25,0	0
+0:51:00	89	24,8	0
+0:52:00	89	25,0	0
+0:53:00	89	25,0	0
+0:54:00	89	25,2	0
+0:55:00	88	25,2	0
+0:56:00	88	25,2	0
+0:57:00	88	24,8	0
+0:58:00	87	24,9	0
+0:59:00	87	25,1	0
+1:00:00	87	24,8	0
+1:01:00	86	25,1	0
+1:02:00	86	25,4	0
+1:03:00	85	24,9	0
+1:04:00	85	25,2	0
+1:05:00	85	25,0	0

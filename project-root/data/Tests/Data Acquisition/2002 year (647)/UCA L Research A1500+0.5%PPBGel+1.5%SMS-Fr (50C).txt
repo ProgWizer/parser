@@ -1,0 +1,57 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	4262 L
+Instrument Type	UCA
+Instrument Serial Number	111
+Test Start Date	15.05.2002
+Test Start Time	0:18:55
+Test Stop Date	15.05.2002
+Test Stop Time	0:41:40
+Test Length	0:22:45
+Final Sample Time Offset	0:22:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	T: 50(30min), tap water, french SMS
+Information	WellID	
+Information	Customer	Petro-Aliance
+Information	CementClass	A
+Information	CementMfr	Suhoy Log
+Information	Additives	0.5%Gel+1.5%SMS-Fr
+Information	Density	1500
+Information	BHCT	50
+Information	BHST	60
+Information	FluidLoss	
+Information	JobType	Research
+Calculated Value	Finish Set	N/A
+Calculated Curve	Compressive Strength	Compressive strength type B (more than 14 lb/gal)
+Initial Temperature (°C)	23 °C
+Final Temperature (°C)	ERROR
+Initial Transit Time (microsec/in)	17,55 microsec/in
+Final Transit Time (microsec/in)	ERROR
+Initial Compressive Strength (MPa)	0,00 MPa
+Final Compressive Strength (MPa)	N/A
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Transit Time (microsec/in)	Compressive Strength (MPa)
+0:00:00	23	17,55	0,00
+0:01:00	23	17,54	0,00
+0:02:00	23	17,55	0,00
+0:03:00	23	17,55	0,00
+0:04:00	24	17,54	0,00
+0:05:00	23	17,55	0,00
+0:06:00	24	17,55	0,00
+0:07:00	24	17,55	0,00
+0:08:00	25	17,55	0,00
+0:09:00	25	17,55	0,00
+0:10:00	26	17,55	0,00
+0:11:00	27	17,55	0,00
+0:12:00	28	17,53	0,00
+0:13:00	29	17,52	0,00
+0:14:00	30	17,52	0,00
+0:15:00	32	17,51	0,01
+0:16:00	33	17,49	0,01
+0:17:00	34	17,47	0,01
+0:18:00	35	17,46	0,02
+0:19:00	36	17,44	0,02
+0:20:00	37	17,41	0,02
+0:21:00	38	17,40	0,03
+0:22:00			

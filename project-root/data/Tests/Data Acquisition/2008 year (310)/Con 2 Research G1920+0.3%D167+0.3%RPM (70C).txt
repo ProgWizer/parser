@@ -1,0 +1,84 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222-2
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	28.04.2008
+Test Start Time	9:50:21
+Test Stop Date	28.04.2008
+Test Stop Time	12:56:32
+Test Length	3:06:11
+Final Sample Time Offset	3:06:10
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	P:30MPa(35): T:70C(35), dryblend
+Information	WellID	research
+Information	Customer	
+Information	CementClass	G
+Information	CementMfr	
+Information	Additives	0.3%RPM+0.3%D-167
+Information	Density	1920
+Information	BHCT	70
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	30Bc - TT	2:59:10
+Calculated Value	70Bc - TT	3:06:10
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	27 °C
+Final Temperature (°C)	70 °C
+Initial Pressure (MPa)	2,9 MPa
+Final Pressure (MPa)	30,2 MPa
+Initial Consistency (Bc)	8 Bc
+Final Consistency (Bc)	82 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	27	2,9	8
+0:01:00	27	3,8	18
+0:02:00	28	4,5	16
+0:03:00	29	5,8	18
+0:04:00	30	6,5	16
+0:05:00	32	7,4	15
+0:06:00	34	7,0	15
+0:07:00	35	8,6	13
+0:08:00	36	9,8	15
+0:09:00	38	10,4	16
+0:10:00	39	11,1	16
+0:11:00	41	12,0	13
+0:12:00	42	12,7	14
+0:13:00	44	13,6	12
+0:14:00	45	14,6	12
+0:15:00	46	15,2	12
+0:16:00	47	16,2	11
+0:17:00	48	16,5	16
+0:18:00	50	17,6	14
+0:19:00	51	18,0	13
+0:20:00	52	19,0	13
+0:21:00	53	20,2	12
+0:22:00	54	20,8	10
+0:23:00	56	21,7	10
+0:24:00	57	22,2	11
+0:25:00	58	23,2	10
+0:26:00	59	23,8	10
+0:27:00	61	24,9	9
+0:28:00	62	25,4	9
+0:29:00	63	26,4	8
+0:30:00	64	27,2	10
+0:31:00	65	28,0	10
+0:32:00	67	28,4	10
+0:33:00	68	29,5	10
+0:34:00	69	29,7	11
+0:35:00	70	30,4	10
+0:36:00	71	30,0	10
+0:37:00	72	30,1	8
+0:38:00	72	30,3	9
+2:58:10			
+2:58:10	69	30,0	41
+2:59:10	69	30,0	44
+3:00:10	69	30,2	46
+3:01:10	69	30,2	59
+3:02:10	69	30,1	62
+3:03:10	69	30,2	67
+3:04:10	69	30,0	69
+3:05:10	70	30,2	73
+3:06:10	70	30,2	82

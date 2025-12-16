@@ -1,0 +1,181 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	4262L
+Instrument Type	Model 4262 Twin Cell UCA
+Instrument Serial Number	111L
+Test Start Date	19.04.2005
+Test Start Time	21:11:05
+Test Stop Date	19.04.2005
+Test Stop Time	23:31:07
+Test Length	2:20:02
+Final Sample Time Offset	2:20:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	T: 60C(35min), 75C(2340min), tap water, dry-blending, Kogalym cement
+Information	WellID	
+Information	Customer	
+Information	CementClass	G
+Information	CementMfr	Duckerhoff
+Information	Additives	0.8FL+0.35RPM+1.5TA-1+0.05LTR
+Information	Density	1920
+Information	BHCT	60
+Information	BHST	75
+Information	FluidLoss	n/a
+Information	JobType	Research
+Calculated Value	CS_50	N/A
+Calculated Value	CS_500	N/A
+Calculated Value	CS_Time8h	N/A
+Calculated Value	CS_Time16h	N/A
+Calculated Value	CS_Time24h	N/A
+Calculated Value	CS_Time48h	N/A
+Calculated Value	CS_Time72h	N/A
+Calculated Curve	Compressive Strength	Compressive strength type B (more than 14 lb/gal)
+Initial Temperature (°C)	26 °C
+Final Temperature (°C)	66 °C
+Initial Transit Time (microsec/in)	ERROR
+Final Transit Time (microsec/in)	ERROR
+Initial Compressive Strength (MPa)	N/A
+Final Compressive Strength (MPa)	N/A
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Transit Time (microsec/in)	Compressive Strength (MPa)
+0:00:00	26		
+0:01:00	26		
+0:02:00	27		
+0:03:00	27		
+0:04:00	28		
+0:05:00	28		
+0:06:00	29		
+0:07:00	30		
+0:08:00	31		
+0:09:00	32		
+0:10:00	33		
+0:11:00	33		
+0:12:00	33		
+0:13:00	34		
+0:14:00	34		
+0:15:00	34		
+0:16:00	34		
+0:17:00	35		
+0:18:00	35		
+0:19:00	36		
+0:20:00	37		
+0:21:00	38		
+0:22:00	40		
+0:23:00	41		
+0:24:00	42		
+0:25:00	43		
+0:26:00	44		
+0:27:00	45		
+0:28:00	46		
+0:29:00	48		
+0:30:00	49		
+0:31:00	50		
+0:32:00	51	15,88	0,00
+0:33:00	52	15,86	0,00
+0:34:00	54	15,84	0,01
+0:35:00	55	15,80	0,02
+0:36:00	56	15,78	0,03
+0:37:00	57	15,75	0,04
+0:38:00	58	15,71	0,05
+0:39:00	59	15,70	0,06
+0:40:00	59	15,70	0,06
+0:41:00	60	15,68	0,06
+0:42:00	60	15,69	0,06
+0:43:00	61	15,69	0,06
+0:44:00	61	15,68	0,06
+0:45:00	61	15,69	0,06
+0:46:00	62	15,66	0,07
+0:47:00	62	15,66	0,07
+0:48:00	62	15,66	0,07
+0:49:00	62	15,67	0,07
+0:50:00	62	15,69	0,06
+0:51:00	62	15,67	0,07
+0:52:00	62	15,68	0,06
+0:53:00	63	15,69	0,06
+0:54:00	63		
+0:55:00	63	15,70	0,06
+0:56:00	63	15,69	0,06
+0:57:00	63	15,71	0,05
+0:58:00	63	15,72	0,05
+0:59:00	63	15,71	0,05
+1:00:00	63	15,72	0,05
+1:01:00	63		
+1:02:00	63	15,72	0,05
+1:03:00	63	15,73	0,05
+1:04:00	63	15,74	0,04
+1:05:00	63		
+1:06:00	63		
+1:07:00	63	15,75	0,04
+1:08:00	63	15,75	0,04
+1:09:00	63	15,75	0,04
+1:10:00	63	15,73	0,05
+1:11:00	63		
+1:12:00	63		
+1:13:00	63		
+1:14:00	63	15,79	0,03
+1:15:00	63		
+1:16:00	63		
+1:17:00	63		
+1:18:00	63		
+1:19:00	63		
+1:20:00	63		
+1:21:00	63		
+1:22:00	63		
+1:23:00	63		
+1:24:00	63		
+1:25:00	63		
+1:26:00	63		
+1:27:00	63		
+1:28:00	63		
+1:29:00	63		
+1:30:00	63		
+1:31:00	63		
+1:32:00	64	15,81	0,02
+1:33:00	63		
+1:34:00	64		
+1:35:00	63		
+1:36:00	64		
+1:37:00	64		
+1:38:00	64		
+1:39:00	64		
+1:40:00	64		
+1:41:00	64		
+1:42:00	64		
+1:43:00	64		
+1:44:00	64		
+1:45:00	64		
+1:46:00	64		
+1:47:00	64		
+1:48:00	64		
+1:49:00	64		
+1:50:00	64		
+1:51:00	64		
+1:52:00	64		
+1:53:00	64		
+1:54:00	64		
+1:55:00	65	15,84	0,01
+1:56:00	65		
+1:57:00	65		
+1:58:00	65		
+1:59:00	65		
+2:00:00	65		
+2:01:00	65		
+2:02:00	65		
+2:03:00	65		
+2:04:00	65		
+2:05:00	65		
+2:06:00	65		
+2:07:00	65		
+2:08:00	65		
+2:09:00	66		
+2:10:00	65		
+2:11:00	65		
+2:12:00	65		
+2:13:00	66		
+2:14:00	66		
+2:15:00	66		
+2:16:00	66		
+2:17:00	65		
+2:18:00	65		
+2:19:00	66		
+2:20:00	66		

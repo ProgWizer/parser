@@ -71,7 +71,7 @@ function App() {
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/parser" element={<Parser />} />
+          <Route path="/parse-files" element={<Parser />} />
         </Routes>
       </Container>
 

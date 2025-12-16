@@ -181,24 +181,24 @@ function Parser() {
       setError('Пожалуйста, выберите папку')
       return
     }
-
+  
     setLoading(true)
     setError('')
     setLogs([])
     setTaskId(null)
     const currentStartTime = new Date().toISOString()
     setStartTime(currentStartTime)
-
+  
     try {
       const response = await axios.post(`${API_URL}/api/parse-files`, {
         path: selectedFolder
       }, {
         timeout: 60000
       })
-
+  
       const newTaskId = response.data.task_id
       
-      // Сохраняем в историю
+      // Сохраняем в историю с начальными данными
       saveToHistory({
         taskId: newTaskId,
         type: 'parse',
@@ -206,19 +206,36 @@ function Parser() {
         folderName: getFolderName(selectedFolder),
         startTime: currentStartTime,
         status: 'running',
-        logs: []
+        logs: [{
+          message: `🚀 Парсинг запущен. Папка: ${getFolderName(selectedFolder)}`,
+          type: 'info'
+        }]
       })
-
+  
       setTaskId(newTaskId)
       setLogs([{
         message: `🚀 Парсинг запущен. Папка: ${getFolderName(selectedFolder)}`,
         type: 'info'
       }])
-
+  
       pollLogs(newTaskId, currentStartTime)
-
+  
     } catch (err) {
       console.error('Ошибка запуска парсинга:', err)
+      
+      // Сохраняем ошибку в историю
+      saveToHistory({
+        taskId: 'error_' + Date.now(),
+        type: 'parse',
+        path: selectedFolder,
+        folderName: getFolderName(selectedFolder),
+        startTime: currentStartTime,
+        status: 'failed',
+        error: err.response?.data?.detail || err.message || 'Ошибка запуска парсинга',
+        endTime: new Date().toISOString(),
+        duration: '0 сек'
+      })
+      
       setError(err.response?.data?.detail || err.message || 'Ошибка запуска парсинга')
       setLoading(false)
     }
@@ -230,43 +247,69 @@ function Parser() {
         const response = await axios.get(`${API_URL}/api/task/${id}/logs`, {
           timeout: 15000
         })
-
-        const newLogs = response.data.logs
+  
+        const newLogs = response.data.logs || []
         const taskStatus = response.data.status
-
-        if (newLogs && newLogs.length > 0) {
-          setLogs(prev => {
-            const existingMessages = new Set(prev.map(l => l.message))
-            const filtered = newLogs.filter(l => !existingMessages.has(l.message))
-            return [...prev, ...filtered]
-          })
-        }
-
-        if (taskStatus === 'running') {
-          setTimeout(() => poll(id, startTime), 1500)
-        } else if (taskStatus === 'completed') {
-          const finalLogs = [...logs, {
-            message: '✅ Парсинг завершен успешно!',
-            type: 'success'
-          }]
+  
+        // Получаем актуальные логи
+        setLogs(prev => {
+          const existingMessages = new Set(prev.map(l => l.message))
+          const filtered = newLogs.filter(l => !existingMessages.has(l.message))
+          const updatedLogs = [...prev, ...filtered]
           
-          // Обновляем историю
+          // Сразу обновляем историю с новыми логами
           updateHistoryItem(id, {
-            status: 'completed',
-            endTime: new Date().toISOString(),
-            logs: finalLogs,
-            duration: formatDuration(startTime, new Date())
+            logs: updatedLogs,
+            status: taskStatus
           })
+          
+          return updatedLogs
+        })
+  
+        if (taskStatus === 'running') {
+          setTimeout(poll, 1500)
+        } else if (taskStatus === 'completed') {
+          // Получаем финальный результат
+          try {
+            const resultResponse = await axios.get(`${API_URL}/api/task/${id}/result`)
+            const finalResult = resultResponse.data.result
+            
+            const finalLogs = [
+              ...logs,
+              {
+                message: '✅ Парсинг завершен успешно!',
+                type: 'success'
+              }
+            ]
+            
+            // Обновляем историю с результатом
+            updateHistoryItem(id, {
+              status: 'completed',
+              endTime: new Date().toISOString(),
+              logs: finalLogs,
+              duration: formatDuration(startTime, new Date()),
+              result: finalResult
+            })
+          } catch (error) {
+            console.error('Ошибка получения результата:', error)
+            updateHistoryItem(id, {
+              status: 'completed',
+              endTime: new Date().toISOString(),
+              duration: formatDuration(startTime, new Date())
+            })
+          }
           
           setLoading(false)
           setTimeout(loadFolders, 1000)
         } else if (taskStatus === 'failed') {
-          const finalLogs = [...logs, {
-            message: '❌ Парсинг завершен с ошибкой',
-            type: 'error'
-          }]
+          const finalLogs = [
+            ...logs,
+            {
+              message: '❌ Парсинг завершен с ошибкой',
+              type: 'error'
+            }
+          ]
           
-          // Обновляем историю
           updateHistoryItem(id, {
             status: 'failed',
             endTime: new Date().toISOString(),
@@ -276,13 +319,12 @@ function Parser() {
           
           setLoading(false)
         }
-
+  
       } catch (err) {
         console.error('Ошибка опроса:', err)
         if (err.code === 'ECONNABORTED') {
-          setTimeout(() => poll(id, startTime), 2000)
+          setTimeout(poll, 2000)
         } else {
-          // Обновляем историю при ошибке
           updateHistoryItem(id, {
             status: 'failed',
             endTime: new Date().toISOString(),
@@ -295,7 +337,7 @@ function Parser() {
         }
       }
     }
-
+  
     poll()
   }
 

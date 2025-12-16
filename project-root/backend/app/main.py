@@ -2,12 +2,13 @@ import asyncio
 import os
 import shutil
 import re
+import json
 import pandas as pd
 from io import StringIO
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Any
 from contextlib import asynccontextmanager
 import logging
 import uuid
@@ -19,7 +20,14 @@ logger = logging.getLogger(__name__)
 # Глобальное хранилище задач
 current_tasks: Dict[str, Dict] = {}
 task_results: Dict[str, Dict] = {}
+HISTORY_FILE = "/app/data/processing_history.json"
 
+# Создаем файл истории если его нет
+history_dir = os.path.dirname(HISTORY_FILE)
+os.makedirs(history_dir, exist_ok=True)
+if not os.path.exists(HISTORY_FILE):
+    with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
+        json.dump([], f)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -43,6 +51,7 @@ async def lifespan(app: FastAPI):
 
     # Shutdown
     logger.info("Завершение работы...")
+    save_history_to_file()
 
 
 app = FastAPI(title="File Processor API", lifespan=lifespan)
@@ -71,56 +80,227 @@ class TaskResponse(BaseModel):
 class LogMessage(BaseModel):
     message: str
     type: str = "info"
+    timestamp: str = None
 
 
 # Вспомогательные функции
+def save_history_to_file():
+    """Сохраняет историю обработки в файл"""
+    try:
+        # Собираем все завершенные задачи
+        history_entries = []
+        for task_id, task_info in current_tasks.items():
+            if task_info.get("status") in ["completed", "failed"]:
+                # Подготовка записи истории
+                history_entry = {
+                    "id": task_id,
+                    "taskId": task_id,
+                    "type": task_info.get("type"),
+                    "status": task_info.get("status"),
+                    "folderName": task_info.get("folder_name"),
+                    "path": task_info.get("path"),
+                    "startTime": task_info.get("started_at"),
+                    "endTime": task_info.get("completed_at"),
+                    "duration": None,
+                    "error": task_info.get("error"),
+                    "result": task_info.get("result"),
+                    "logs": []
+                }
+                
+                # Рассчитываем продолжительность
+                if task_info.get("started_at") and task_info.get("completed_at"):
+                    start = datetime.fromisoformat(task_info["started_at"])
+                    end = datetime.fromisoformat(task_info["completed_at"])
+                    duration_seconds = (end - start).seconds
+                    if duration_seconds < 60:
+                        history_entry["duration"] = f"{duration_seconds} сек"
+                    else:
+                        history_entry["duration"] = f"{duration_seconds // 60} мин {duration_seconds % 60} сек"
+                
+                # Сохраняем логи
+                logs = task_info.get("logs", [])
+                if logs:
+                    history_entry["logs"] = [
+                        {
+                            "message": log.message if hasattr(log, 'message') else str(log),
+                            "type": log.type if hasattr(log, 'type') else "info",
+                            "timestamp": log.timestamp if hasattr(log, 'timestamp') else task_info.get("started_at")
+                        }
+                        for log in logs
+                    ]
+                
+                history_entries.append(history_entry)
+        
+        # Сортируем по времени (новые сверху)
+        history_entries.sort(key=lambda x: x.get("startTime", ""), reverse=True)
+        
+        with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(history_entries, f, ensure_ascii=False, indent=2)
+        
+        logger.info(f"История сохранена в файл: {HISTORY_FILE} ({len(history_entries)} записей)")
+        
+    except Exception as e:
+        logger.error(f"Ошибка сохранения истории: {e}")
+
+
+def load_history_from_file():
+    """Загружает историю обработки из файла"""
+    try:
+        if os.path.exists(HISTORY_FILE):
+            with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
+                history_data = json.load(f)
+                logger.info(f"Загружена история из файла: {len(history_data)} записей")
+                return history_data
+        else:
+            logger.info("Файл истории не найден, будет создан новый")
+            return []
+    except Exception as e:
+        logger.error(f"Ошибка загрузки истории: {e}")
+        return []
+
+
+def save_to_history(task_data: Dict):
+    """Сохраняет задачу в историю"""
+    try:
+        # Загружаем текущую историю
+        history = load_history_from_file()
+        
+        # Создаем запись истории
+        task_id = task_data.get("id") or task_data.get("task_id")
+        history_entry = {
+            "id": task_id or str(uuid.uuid4()),
+            "taskId": task_id,
+            "type": task_data.get("type"),
+            "status": task_data.get("status"),
+            "folderName": task_data.get("folder_name"),
+            "path": task_data.get("path"),
+            "startTime": task_data.get("started_at"),
+            "endTime": task_data.get("completed_at"),
+            "duration": None,
+            "error": task_data.get("error"),
+            "result": task_data.get("result"),
+            "logs": []
+        }
+        
+        # Рассчитываем продолжительность
+        if task_data.get("started_at") and task_data.get("completed_at"):
+            start = datetime.fromisoformat(task_data["started_at"])
+            end = datetime.fromisoformat(task_data["completed_at"])
+            duration_seconds = (end - start).seconds
+            if duration_seconds < 60:
+                history_entry["duration"] = f"{duration_seconds} сек"
+            else:
+                history_entry["duration"] = f"{duration_seconds // 60} мин {duration_seconds % 60} сек"
+        
+        # Сохраняем логи в правильном формате
+        logs = task_data.get("logs", [])
+        if logs:
+            history_entry["logs"] = [
+                {
+                    "message": log.message if hasattr(log, 'message') else log.get("message", str(log)),
+                    "type": log.type if hasattr(log, 'type') else log.get("type", "info"),
+                    "timestamp": log.timestamp if hasattr(log, 'timestamp') else log.get("timestamp", task_data.get("started_at"))
+                }
+                for log in logs
+            ]
+        
+        # Удаляем старую запись с тем же taskId если есть
+        history = [h for h in history if h.get("taskId") != task_id]
+        
+        # Добавляем в начало истории (новые сверху)
+        history.insert(0, history_entry)
+        
+        # Ограничиваем размер истории
+        if len(history) > 100:
+            history = history[:100]
+        
+        # Сохраняем в файл
+        with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(history, f, ensure_ascii=False, indent=2)
+        
+        logger.info(f"Сохранено в историю: {task_data.get('type')} - {task_data.get('folder_name')} ({len(logs)} логов)")
+        
+        return history_entry
+        
+    except Exception as e:
+        logger.error(f"Ошибка сохранения в историю: {e}")
+        return None
+
+
 def add_log_to_task(task_id: str, message: str, type: str = "info"):
     """Добавляет лог в задачу"""
     if task_id not in current_tasks:
         current_tasks[task_id] = {"logs": [], "status": "running"}
 
-    # Добавляем timestamp к сообщению
-    timestamp = datetime.now().strftime("%H:%M:%S")
-    formatted_message = f"[{timestamp}] {message}"
-
-    current_tasks[task_id]["logs"].append(LogMessage(message=formatted_message, type=type))
-
-    # Ограничиваем количество логов (последние 1000)
+    # Важно: сохраняем timestamp в правильном формате
+    timestamp = datetime.now().isoformat()
+    
+    # Убедимся, что message - строка
+    if not isinstance(message, str):
+        message = str(message)
+    
+    # Форматируем сообщение
+    formatted_message = f"[{datetime.now().strftime('%H:%M:%S')}] {message}"
+    
+    # Создаем объект лога
+    log_entry = LogMessage(
+        message=formatted_message,
+        type=type,
+        timestamp=timestamp
+    )
+    
+    # Ограничиваем количество логов (чтобы не перегружать память)
+    if "logs" not in current_tasks[task_id]:
+        current_tasks[task_id]["logs"] = []
+    
+    current_tasks[task_id]["logs"].append(log_entry)
+    
+    # Сохраняем только последние 1000 логов
     if len(current_tasks[task_id]["logs"]) > 1000:
         current_tasks[task_id]["logs"] = current_tasks[task_id]["logs"][-1000:]
+    
+    print(f"📝 Добавлен лог в задачу {task_id}: {type} - {message[:50]}...")
+    return log_entry
 
-
-# ========== ФУНКЦИИ ОБРАБОТКИ ФАЙЛОВ ==========
 
 def find_all_broken_files(root_path: str, task_id: str):
     """Находит ВСЕ битые .tst файлы без парных .txt во ВСЕХ вложенных папках"""
     add_log_to_task(task_id, "🔍 НАЧИНАЕМ РЕКУРСИВНЫЙ ПОИСК ВО ВСЕХ ПАПКАХ...", "info")
-    add_log_to_task(task_id, "============================================", "info")
-
+    add_log_to_task(task_id, "=" * 50, "info")
+    add_log_to_task(task_id, f"📁 Корневая папка: {os.path.basename(root_path)}", "info")
+    add_log_to_task(task_id, f"📁 Полный путь: {root_path}", "info")
+    
     total_found = 0
     total_processed = 0
     moved_files = []
-
-    def walk(directory):
-        """Рекурсивный обход всех папок"""
-        for root, dirs, files in os.walk(directory):
-            yield root, dirs, files
-
-    for folder, dirs, files in walk(root_path):
-        # Пропускаем папку "Изолированные_Битые" если она существует
+    
+    # Считаем общее количество папок
+    folder_count = 0
+    for root, dirs, files in os.walk(root_path):
+        folder_count += 1
+    
+    add_log_to_task(task_id, f"📊 Всего папок для проверки: {folder_count}", "info")
+    
+    current_folder = 0
+    for folder, dirs, files in os.walk(root_path):
+        current_folder += 1
+        
+        # Пропускаем папку "Изолированные_Битые"
         if "Изолированные_Битые" in folder:
             continue
             
-        add_log_to_task(task_id, f"📁 Проверка папки: {os.path.basename(folder)}", "info")
+        add_log_to_task(task_id, f"📂 Проверка папки [{current_folder}/{folder_count}]: {os.path.basename(folder)}", "info")
+        add_log_to_task(task_id, f"   📍 Путь: {folder}", "info")
 
-        tst_files = sorted([f for f in files if f.lower().endswith(".tst")])
+        # Ищем .tst файлы
+        tst_files = [f for f in files if f.lower().endswith(".tst")]
         
         if not tst_files:
-            add_log_to_task(task_id, "   → .tst файлов не найдено", "info")
+            add_log_to_task(task_id, "   ✅ .tst файлов не найдено", "info")
             continue
             
-        add_log_to_task(task_id, f"   → .tst найдено: {len(tst_files)}", "info")
-
+        add_log_to_task(task_id, f"   📄 Найдено .tst файлов: {len(tst_files)}", "info")
+        
         folder_found = 0
         for tst in tst_files:
             total_processed += 1
@@ -129,12 +309,12 @@ def find_all_broken_files(root_path: str, task_id: str):
             txt_path = os.path.join(folder, txt)
 
             if not os.path.exists(txt_path):
-                # Найден битый файл
+                # Найден битый файл!
                 src = os.path.join(folder, tst)
                 dest_dir = os.path.join(root_path, "Изолированные_Битые")
                 os.makedirs(dest_dir, exist_ok=True)
                 
-                # Создаем подпапку с именем оригинальной папки
+                # Сохраняем структуру папок
                 relative_path = os.path.relpath(folder, root_path)
                 if relative_path != ".":
                     dest_dir = os.path.join(dest_dir, relative_path)
@@ -153,49 +333,52 @@ def find_all_broken_files(root_path: str, task_id: str):
                         "reason": f"Отсутствует {txt}"
                     })
 
-                    add_log_to_task(task_id, "--- ❌ БИТЫЙ ФАЙЛ НАЙДЕН ---", "warning")
-                    add_log_to_task(task_id, f"   Файл: {tst}", "success")
-                    add_log_to_task(task_id, f"   Папка: {os.path.basename(folder)}", "info")
-                    add_log_to_task(task_id, f"   Причина: нет {txt}", "info")
-                    add_log_to_task(task_id, f"   Перемещён в: {dest_dir}", "info")
-                    add_log_to_task(task_id, "---------------------------", "info")
+                    add_log_to_task(task_id, "   ⚠️ БИТЫЙ ФАЙЛ НАЙДЕН ⚠️", "warning")
+                    add_log_to_task(task_id, f"      Файл: {tst}", "info")
+                    add_log_to_task(task_id, f"      Папка: {os.path.basename(folder)}", "info")
+                    add_log_to_task(task_id, f"      Причина: отсутствует файл {txt}", "info")
+                    add_log_to_task(task_id, f"      Перемещен в: {dest_dir}", "success")
 
                 except Exception as e:
-                    add_log_to_task(task_id, f"   ❌ Ошибка перемещения: {e}", "error")
+                    add_log_to_task(task_id, f"      ❌ Ошибка перемещения: {e}", "error")
+            else:
+                # Файл не битый
+                add_log_to_task(task_id, f"   ✓ {tst} - OK (есть {txt})", "info")
                     
         if folder_found > 0:
-            add_log_to_task(task_id, f"   ✅ В папке найдено битых: {folder_found}", "success")
+            add_log_to_task(task_id, f"   📊 В папке найдено битых: {folder_found}", "success")
+        else:
+            add_log_to_task(task_id, f"   ✅ В папке битых файлов нет", "info")
 
+    # Итоговый отчет
+    add_log_to_task(task_id, "=" * 50, "info")
     if total_found > 0:
-        add_log_to_task(task_id, "=" * 50, "info")
         add_log_to_task(task_id, f"🎉 ПОИСК ЗАВЕРШЕН! НАЙДЕНО: {total_found} БИТЫХ ФАЙЛОВ", "success")
-        add_log_to_task(task_id, f"📊 Обработано всего файлов: {total_processed}", "info")
-        add_log_to_task(task_id, f"📁 Перемещено в: {os.path.join(root_path, 'Изолированные_Битые')}", "info")
-        add_log_to_task(task_id, "=" * 50, "info")
-        
-        return {
-            "found": total_found,
-            "processed": total_processed,
-            "moved_files": moved_files,
-            "target_folder": os.path.join(root_path, "Изолированные_Битые"),
-            "message": f"Найдено {total_found} битых файлов"
-        }
     else:
-        add_log_to_task(task_id, "=" * 50, "info")
         add_log_to_task(task_id, "✅ ПОИСК ЗАВЕРШЕН!", "success")
-        add_log_to_task(task_id, f"📊 Обработано файлов: {total_processed}", "info")
+    
+    add_log_to_task(task_id, f"📊 Обработано всего файлов: {total_processed}", "info")
+    add_log_to_task(task_id, f"📊 Проверено папок: {current_folder}", "info")
+    
+    if total_found > 0:
+        add_log_to_task(task_id, f"📁 Перемещено в: {os.path.join(root_path, 'Изолированные_Битые')}", "info")
+    else:
         add_log_to_task(task_id, "📭 БИТЫХ ФАЙЛОВ НЕ НАЙДЕНО", "success")
-        add_log_to_task(task_id, "=" * 50, "info")
-        
-        return {
-            "found": 0,
-            "processed": total_processed,
-            "message": "Битых файлов не обнаружено"
-        }
+    
+    add_log_to_task(task_id, "=" * 50, "info")
+    
+    return {
+        "found": total_found,
+        "processed": total_processed,
+        "folders_checked": current_folder,
+        "moved_files": moved_files,
+        "target_folder": os.path.join(root_path, "Изолированные_Битые") if total_found > 0 else None,
+        "message": f"Найдено {total_found} битых файлов" if total_found > 0 else "Битых файлов не обнаружено"
+    }
 
 
 def parse_files_task(input_folder: str, task_id: str):
-    """Парсит файлы в указанной папке"""
+    """Парсит файлы в указанной папке с новой структурой"""
     add_log_to_task(task_id, f"🔍 Начинаем парсинг файлов в: {input_folder}", "info")
 
     # Создаем папку Results рядом с Tests
@@ -208,13 +391,13 @@ def parse_files_task(input_folder: str, task_id: str):
     report_summary = {
         "Всего обработано": 0,
         "UCA файлы": 0,
-        "УльтраЗвук файлы": 0,
+        "Другое файлы": 0,
         "UCA - неполные/ошибки": 0,
         "Ошибки чтения": 0,
         "Распределение по категориям UCA": {}
     }
 
-    # Функции парсинга (остаются без изменений)
+    # Функции парсинга
     def parse_summary_line(line):
         parts = [p.strip() for p in line.strip().split("\t") if p.strip()]
         if not parts:
@@ -357,6 +540,9 @@ def parse_files_task(input_folder: str, task_id: str):
                 if not cement_val:
                     missing_params.append("CementClass")
 
+                # Основная папка UCA
+                base_uca_folder = os.path.join(output_folder, "UCA")
+                
                 if not missing_params:
                     density_folder = get_density_range(density_val)
                     algorithm_folder = get_strength_type(strength_val)
@@ -364,16 +550,16 @@ def parse_files_task(input_folder: str, task_id: str):
                     
                     # Сохраняем структуру папок
                     if relative_root != ".":
-                        target_folder = os.path.join(output_folder, relative_root, density_folder, algorithm_folder, cement_folder)
+                        target_folder = os.path.join(base_uca_folder, relative_root, density_folder, algorithm_folder, cement_folder)
                     else:
-                        target_folder = os.path.join(output_folder, density_folder, algorithm_folder, cement_folder)
+                        target_folder = os.path.join(base_uca_folder, density_folder, algorithm_folder, cement_folder)
                         
                     category_key = f"{density_folder}/{algorithm_folder}/{cement_folder}"
                     add_log_to_task(task_id,
                                     f"✅ Категория: Плотность={density_folder}, Прочность={algorithm_folder}, Цемент={cement_folder}",
                                     "success")
                 else:
-                    target_folder = os.path.join(output_folder, relative_root, "Неполные")
+                    target_folder = os.path.join(base_uca_folder, relative_root, "Неполные")
                     category_key = "Неполные"
                     report_summary["UCA - неполные/ошибки"] += 1
                     add_log_to_task(task_id, f"⚠️ Отправлен в Неполные: отсутствуют {', '.join(missing_params)}",
@@ -401,7 +587,7 @@ def parse_files_task(input_folder: str, task_id: str):
                                                                                            "Распределение по категориям UCA"].get(
                             "Неполные", 0) + 1
 
-                    target_folder = os.path.join(output_folder, relative_root, "Неполные")
+                    target_folder = os.path.join(base_uca_folder, relative_root, "Неполные")
                     os.makedirs(target_folder, exist_ok=True)
                     data_df = None
                     category_key = "Неполные"
@@ -417,10 +603,10 @@ def parse_files_task(input_folder: str, task_id: str):
 
                 add_log_to_task(task_id, f"💾 Сохранено в {target_folder}", "success")
 
-            # --- ОБРАБОТКА НЕ-UCA (УльтраЗвук) ---
+            # --- ОБРАБОТКА НЕ-UCA (Другое) ---
             else:
-                report_summary["УльтраЗвук файлы"] += 1
-                add_log_to_task(task_id, "➡️ Тип определен: УльтраЗвук", "info")
+                report_summary["Другое файлы"] += 1
+                add_log_to_task(task_id, "➡️ Тип определен: Другое", "info")
 
                 rows = []
                 for line in lines:
@@ -437,19 +623,22 @@ def parse_files_task(input_folder: str, task_id: str):
                 col_names = [f"Колонка_{i + 1}" for i in range(max_cols)]
                 df = pd.DataFrame([r + [''] * (max_cols - len(r)) for r in rows], columns=col_names)
 
+                # Основная папка Другое
+                base_other_folder = os.path.join(output_folder, "Другое")
+                
                 # Сохраняем структуру папок
                 if relative_root != ".":
-                    ultrasound_folder = os.path.join(output_folder, relative_root, "УльтраЗвук")
+                    other_folder = os.path.join(base_other_folder, relative_root)
                 else:
-                    ultrasound_folder = os.path.join(output_folder, "УльтраЗвук")
+                    other_folder = base_other_folder
                     
-                os.makedirs(ultrasound_folder, exist_ok=True)
+                os.makedirs(other_folder, exist_ok=True)
 
                 base_name = os.path.splitext(file_name)[0]
-                excel_path = os.path.join(ultrasound_folder, f"{base_name}.xlsx")
+                excel_path = os.path.join(other_folder, f"{base_name}.xlsx")
                 df.to_excel(excel_path, index=False)
 
-                add_log_to_task(task_id, f"💾 Сохранено в {ultrasound_folder}", "success")
+                add_log_to_task(task_id, f"💾 Сохранено в {other_folder}", "success")
 
         # Итоговый отчет
         add_log_to_task(task_id, "=" * 50, "info")
@@ -457,7 +646,7 @@ def parse_files_task(input_folder: str, task_id: str):
         add_log_to_task(task_id, "=" * 50, "info")
         add_log_to_task(task_id, f"📁 Всего обработано: {report_summary['Всего обработано']}", "info")
         add_log_to_task(task_id, f"🔹 UCA-файлы: {report_summary['UCA файлы']}", "info")
-        add_log_to_task(task_id, f"🔹 УльтраЗвук: {report_summary['УльтраЗвук файлы']}", "info")
+        add_log_to_task(task_id, f"🔹 Другое: {report_summary['Другое файлы']}", "info")
         add_log_to_task(task_id, f"🔹 Неполные/Ошибки: {report_summary['UCA - неполные/ошибки']}", "info")
         add_log_to_task(task_id, f"🔹 Ошибки чтения: {report_summary['Ошибки чтения']}", "info")
 
@@ -475,6 +664,10 @@ def parse_files_task(input_folder: str, task_id: str):
         return {
             "processed": report_summary["Всего обработано"],
             "output_folder": output_folder,
+            "structure": {
+                "UCA": base_uca_folder if 'base_uca_folder' in locals() else os.path.join(output_folder, "UCA"),
+                "Другое": base_other_folder if 'base_other_folder' in locals() else os.path.join(output_folder, "Другое")
+            },
             "summary": report_summary
         }
 
@@ -497,6 +690,7 @@ async def root():
             "/api/folders (GET) - список папок в data",
             "/api/task/{task_id}/logs (GET) - получение логов",
             "/api/task/{task_id}/status (GET) - статус задачи",
+            "/api/history (GET) - история обработки",
             "/docs - документация API"
         ]
     }
@@ -598,11 +792,15 @@ async def find_broken_files(request: PathRequest, background_tasks: BackgroundTa
             "type": "find-broken",
             "path": input_path,
             "folder_name": os.path.basename(input_path),
-            "started_at": datetime.now().isoformat()
+            "started_at": datetime.now().isoformat(),
+            "id": task_id
         }
 
         add_log_to_task(task_id, f"📁 Обрабатываем папку: {os.path.basename(input_path)}", "info")
         add_log_to_task(task_id, "⏳ Начинаем поиск битых файлов...", "info")
+
+        # Сразу сохраняем в историю (начало задачи)
+        save_to_history(current_tasks[task_id])
 
         # Запускаем фоновую задачу
         background_tasks.add_task(
@@ -648,11 +846,15 @@ async def parse_files_endpoint(request: PathRequest, background_tasks: Backgroun
             "type": "parse",
             "path": input_path,
             "folder_name": os.path.basename(input_path),
-            "started_at": datetime.now().isoformat()
+            "started_at": datetime.now().isoformat(),
+            "id": task_id
         }
 
         add_log_to_task(task_id, f"📁 Обрабатываем папку: {os.path.basename(input_path)}", "info")
         add_log_to_task(task_id, "⏳ Начинаем парсинг...", "info")
+
+        # Сразу сохраняем в историю (начало задачи)
+        save_to_history(current_tasks[task_id])
 
         # Запускаем фоновую задачу
         background_tasks.add_task(
@@ -675,34 +877,44 @@ async def parse_files_endpoint(request: PathRequest, background_tasks: Backgroun
 # ========== ФОНОВЫЕ ЗАДАЧИ ==========
 
 async def process_find_broken_task(task_id: str, input_path: str):
-    """Фоновая задача поиска битых файлов - ДЛЯ ГЛАВНОЙ СТРАНИЦЫ"""
+    """Фоновая задача поиска битых файлов"""
     try:
         add_log_to_task(task_id, "🔍 Начинаем поиск битых .tst файлов...", "info")
-
-        # Запускаем обработку в отдельном потоке
+        add_log_to_task(task_id, f"📁 Папка: {os.path.basename(input_path)}", "info")
+        
+        # Запускаем обработку
         loop = asyncio.get_event_loop()
         result = await loop.run_in_executor(
             None,
-            find_all_broken_files,  # ИСПРАВЛЕНО: используем новую функцию
+            find_all_broken_files,
             input_path,
             task_id
         )
 
         # Сохраняем результат
         task_results[task_id] = result
-
-        # Отмечаем задачу как завершенную
+        
+        # Обновляем статус задачи
         current_tasks[task_id]["status"] = "completed"
         current_tasks[task_id]["completed_at"] = datetime.now().isoformat()
         current_tasks[task_id]["result"] = result
-
+        
         add_log_to_task(task_id, "✅ Задача поиска завершена!", "success")
+        
+        # Сохраняем в историю
+        save_to_history(current_tasks[task_id])
+        
+        print(f"✅ Задача {task_id} завершена. Сохранено в историю.")
 
     except Exception as e:
         logger.error(f"Ошибка в process_find_broken_task: {e}")
-        add_log_to_task(task_id, f"❌ Ошибка: {str(e)}", "error")
+        add_log_to_task(task_id, f"❌ Критическая ошибка: {str(e)}", "error")
         current_tasks[task_id]["status"] = "failed"
         current_tasks[task_id]["error"] = str(e)
+        current_tasks[task_id]["completed_at"] = datetime.now().isoformat()
+        
+        # Сохраняем в историю даже при ошибке
+        save_to_history(current_tasks[task_id])
 
 
 async def process_parse_task(task_id: str, input_path: str):
@@ -722,14 +934,21 @@ async def process_parse_task(task_id: str, input_path: str):
         current_tasks[task_id]["status"] = "completed"
         current_tasks[task_id]["completed_at"] = datetime.now().isoformat()
         current_tasks[task_id]["result"] = result
-
+        
         add_log_to_task(task_id, "✅ Парсинг завершен!", "success")
+        
+        # Сохраняем в историю
+        save_to_history(current_tasks[task_id])
 
     except Exception as e:
         logger.error(f"Ошибка в process_parse_task: {e}")
         add_log_to_task(task_id, f"❌ Ошибка: {str(e)}", "error")
         current_tasks[task_id]["status"] = "failed"
         current_tasks[task_id]["error"] = str(e)
+        current_tasks[task_id]["completed_at"] = datetime.now().isoformat()
+        
+        # Сохраняем в историю даже при ошибке
+        save_to_history(current_tasks[task_id])
 
 
 # ========== ЭНДПОИНТЫ ДЛЯ ОТСЛЕЖИВАНИЯ ==========
@@ -738,10 +957,39 @@ async def process_parse_task(task_id: str, input_path: str):
 async def get_task_logs(task_id: str):
     """Получение логов задачи"""
     if task_id not in current_tasks:
+        # Проверяем историю
+        history_data = load_history_from_file()
+        history_task = next((h for h in history_data if h.get("taskId") == task_id), None)
+        
+        if history_task:
+            return {
+                "task_id": task_id,
+                "status": history_task.get("status", "completed"),
+                "type": history_task.get("type"),
+                "folder_name": history_task.get("folderName"),
+                "started_at": history_task.get("startTime"),
+                "completed_at": history_task.get("endTime"),
+                "logs": history_task.get("logs", [])
+            }
+        
         raise HTTPException(status_code=404, detail="Задача не найдена")
 
     task_info = current_tasks[task_id].copy()
     logs = task_info.get("logs", [])
+
+    # Преобразуем логи в правильный формат
+    formatted_logs = []
+    for log in logs:
+        if hasattr(log, 'dict'):
+            formatted_logs.append(log.dict())
+        elif isinstance(log, dict):
+            formatted_logs.append(log)
+        else:
+            formatted_logs.append({
+                "message": str(log),
+                "type": "info",
+                "timestamp": datetime.now().isoformat()
+            })
 
     return {
         "task_id": task_id,
@@ -750,7 +998,7 @@ async def get_task_logs(task_id: str):
         "folder_name": task_info.get("folder_name"),
         "started_at": task_info.get("started_at"),
         "completed_at": task_info.get("completed_at"),
-        "logs": [log.dict() for log in logs]
+        "logs": formatted_logs
     }
 
 
@@ -758,6 +1006,20 @@ async def get_task_logs(task_id: str):
 async def get_task_status(task_id: str):
     """Получение статуса задачи"""
     if task_id not in current_tasks:
+        # Проверяем историю
+        history_data = load_history_from_file()
+        history_task = next((h for h in history_data if h.get("taskId") == task_id), None)
+        
+        if history_task:
+            return {
+                "task_id": task_id,
+                "status": history_task.get("status", "completed"),
+                "type": history_task.get("type"),
+                "started_at": history_task.get("startTime"),
+                "completed_at": history_task.get("endTime"),
+                "has_result": True
+            }
+        
         raise HTTPException(status_code=404, detail="Задача не найдена")
 
     return {
@@ -800,7 +1062,74 @@ async def get_all_tasks():
     return {"tasks": tasks}
 
 
+@app.get("/api/history")
+async def get_processing_history():
+    """Получение истории обработки"""
+    try:
+        # Загружаем историю из файла
+        history_data = load_history_from_file()
+        
+        # Добавляем текущие задачи в историю для отображения
+        for task_id, task_info in current_tasks.items():
+            if task_info.get("status") == "running":
+                # Проверяем, есть ли уже эта задача в истории
+                existing_index = next(
+                    (i for i, h in enumerate(history_data) 
+                     if h.get("taskId") == task_id), 
+                    -1
+                )
+                
+                if existing_index == -1:
+                    # Создаем запись для текущей задачи
+                    history_entry = {
+                        "id": task_id,
+                        "taskId": task_id,
+                        "type": task_info.get("type"),
+                        "status": "running",
+                        "folderName": task_info.get("folder_name"),
+                        "path": task_info.get("path"),
+                        "startTime": task_info.get("started_at"),
+                        "endTime": None,
+                        "duration": None,
+                        "error": None,
+                        "result": None,
+                        "logs": [
+                            {
+                                "message": log.message if hasattr(log, 'message') else str(log),
+                                "type": log.type if hasattr(log, 'type') else "info",
+                                "timestamp": log.timestamp if hasattr(log, 'timestamp') else task_info.get("started_at")
+                            }
+                            for log in task_info.get("logs", [])
+                        ]
+                    }
+                    history_data.insert(0, history_entry)
+                else:
+                    # Обновляем логи текущей задачи
+                    history_data[existing_index]["logs"] = [
+                        {
+                            "message": log.message if hasattr(log, 'message') else str(log),
+                            "type": log.type if hasattr(log, 'type') else "info",
+                            "timestamp": log.timestamp if hasattr(log, 'timestamp') else task_info.get("started_at")
+                        }
+                        for log in task_info.get("logs", [])
+                    ]
+        
+        # Сортируем по времени (новые сверху)
+        history_data.sort(key=lambda x: x.get("startTime") or "", reverse=True)
+        
+        logger.info(f"Отправлена история: {len(history_data)} записей")
+        
+        return {
+            "history": history_data,
+            "count": len(history_data),
+            "retrieved_at": datetime.now().isoformat()
+        }
+        
+    except Exception as e:
+        logger.error(f"Ошибка получения истории: {e}")
+        raise HTTPException(status_code=500, detail=f"Ошибка получения истории: {str(e)}")
+
+
 if __name__ == "__main__":
     import uvicorn
-
     uvicorn.run(app, host="0.0.0.0", port=8000)

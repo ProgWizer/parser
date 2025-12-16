@@ -41,7 +41,7 @@ function App() {
               <Button 
                 color="inherit" 
                 component={Link} 
-                to="/parser"
+                to="/parse-files"
                 startIcon={<FolderIcon />}
                 sx={{ 
                   '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' },

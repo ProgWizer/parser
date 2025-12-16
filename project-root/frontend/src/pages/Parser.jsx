@@ -33,9 +33,11 @@ import DescriptionIcon from '@mui/icons-material/Description'
 import DataObjectIcon from '@mui/icons-material/DataObject'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
+import HistoryIcon from '@mui/icons-material/History'
 import LogViewer from '../components/LogViewer'
+import History from '../components/History'
 import axios from 'axios'
-import { saveToHistory, updateHistoryItem } from '../utils/history'
+import { saveToHistory, updateHistoryItem, saveCompleteLogsToHistory } from '../utils/history'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -49,6 +51,8 @@ function Parser() {
   const [error, setError] = useState('')
   const [refreshing, setRefreshing] = useState(false)
   const [startTime, setStartTime] = useState(null)
+  const [historyId, setHistoryId] = useState(null)
+  const [historyOpen, setHistoryOpen] = useState(false)
 
   useEffect(() => {
     loadFolders()
@@ -59,10 +63,8 @@ function Parser() {
       setRefreshing(true)
       const response = await axios.get(`${API_URL}/api/folders`)
 
-      // Получаем все папки (включая вложенные)
       const folders = response.data.folders || []
       
-      // Фильтруем чтобы показывать только папки с .txt файлами или вложенными папками
       const filteredFolders = folders.filter(folder => 
         folder.files_count > 0 || (folder.subfolders && folder.subfolders.length > 0)
       )
@@ -70,7 +72,6 @@ function Parser() {
       setAvailableFolders(filteredFolders)
 
       if (filteredFolders.length > 0 && !selectedFolder) {
-        // Выбираем первую папку по умолчанию
         const firstFolder = findFirstFolderWithFiles(filteredFolders)
         if (firstFolder) {
           setSelectedFolder(firstFolder.path)
@@ -85,7 +86,6 @@ function Parser() {
     }
   }
 
-  // Рекурсивно ищем первую папку с файлами
   const findFirstFolderWithFiles = (folders) => {
     for (const folder of folders) {
       if (folder.files_count > 0) {
@@ -99,7 +99,6 @@ function Parser() {
     return null
   }
 
-  // Рекурсивно рендерим папки
   const renderFolderTree = (folders, level = 0) => {
     return folders.map((folder) => (
       <React.Fragment key={folder.path}>
@@ -181,45 +180,46 @@ function Parser() {
       setError('Пожалуйста, выберите папку')
       return
     }
-  
+
     setLoading(true)
     setError('')
     setLogs([])
     setTaskId(null)
     const currentStartTime = new Date().toISOString()
     setStartTime(currentStartTime)
-  
+
     try {
       const response = await axios.post(`${API_URL}/api/parse-files`, {
         path: selectedFolder
       }, {
         timeout: 60000
       })
-  
+
       const newTaskId = response.data.task_id
       
       // Сохраняем в историю с начальными данными
-      saveToHistory({
+      const initialLogs = [{
+        message: `🚀 Парсинг запущен. Папка: ${getFolderName(selectedFolder)}`,
+        type: 'info',
+        timestamp: new Date().toISOString()
+      }]
+      
+      const historyItemId = saveToHistory({
         taskId: newTaskId,
         type: 'parse',
         path: selectedFolder,
         folderName: getFolderName(selectedFolder),
         startTime: currentStartTime,
         status: 'running',
-        logs: [{
-          message: `🚀 Парсинг запущен. Папка: ${getFolderName(selectedFolder)}`,
-          type: 'info'
-        }]
+        logs: initialLogs
       })
-  
+      
+      setHistoryId(historyItemId)
       setTaskId(newTaskId)
-      setLogs([{
-        message: `🚀 Парсинг запущен. Папка: ${getFolderName(selectedFolder)}`,
-        type: 'info'
-      }])
-  
+      setLogs(initialLogs)
+
       pollLogs(newTaskId, currentStartTime)
-  
+
     } catch (err) {
       console.error('Ошибка запуска парсинга:', err)
       
@@ -233,7 +233,12 @@ function Parser() {
         status: 'failed',
         error: err.response?.data?.detail || err.message || 'Ошибка запуска парсинга',
         endTime: new Date().toISOString(),
-        duration: '0 сек'
+        duration: '0 сек',
+        logs: [{
+          message: `❌ Ошибка запуска: ${err.response?.data?.detail || err.message}`,
+          type: 'error',
+          timestamp: new Date().toISOString()
+        }]
       })
       
       setError(err.response?.data?.detail || err.message || 'Ошибка запуска парсинга')
@@ -242,43 +247,55 @@ function Parser() {
   }
 
   const pollLogs = async (id, startTime) => {
+    let attempt = 0
+    const maxAttempts = 10
+    
     const poll = async () => {
       try {
         const response = await axios.get(`${API_URL}/api/task/${id}/logs`, {
           timeout: 15000
         })
-  
+
         const newLogs = response.data.logs || []
         const taskStatus = response.data.status
-  
-        // Получаем актуальные логи
+
+        // Обновляем локальные логи и историю
         setLogs(prev => {
           const existingMessages = new Set(prev.map(l => l.message))
           const filtered = newLogs.filter(l => !existingMessages.has(l.message))
           const updatedLogs = [...prev, ...filtered]
           
-          // Сразу обновляем историю с новыми логами
-          updateHistoryItem(id, {
-            logs: updatedLogs,
-            status: taskStatus
-          })
+          // Обновляем историю
+          if (filtered.length > 0) {
+            updateHistoryItem(id, {
+              logs: updatedLogs,
+              status: taskStatus
+            })
+          }
           
           return updatedLogs
         })
-  
+
         if (taskStatus === 'running') {
           setTimeout(poll, 1500)
         } else if (taskStatus === 'completed') {
-          // Получаем финальный результат
+          // Получаем финальный результат с ВСЕМИ логами
           try {
             const resultResponse = await axios.get(`${API_URL}/api/task/${id}/result`)
             const finalResult = resultResponse.data.result
+            
+            // Получаем все логи с бэкенда
+            const backendLogs = finalResult.allLogs || []
+            
+            // Сохраняем все логи в историю
+            saveCompleteLogsToHistory(id, backendLogs)
             
             const finalLogs = [
               ...logs,
               {
                 message: '✅ Парсинг завершен успешно!',
-                type: 'success'
+                type: 'success',
+                timestamp: new Date().toISOString()
               }
             ]
             
@@ -290,12 +307,27 @@ function Parser() {
               duration: formatDuration(startTime, new Date()),
               result: finalResult
             })
+            
+            setLogs(prev => [...prev, {
+              message: '✅ Парсинг завершен успешно!',
+              type: 'success',
+              timestamp: new Date().toISOString()
+            }])
+            
           } catch (error) {
             console.error('Ошибка получения результата:', error)
             updateHistoryItem(id, {
               status: 'completed',
               endTime: new Date().toISOString(),
-              duration: formatDuration(startTime, new Date())
+              duration: formatDuration(startTime, new Date()),
+              logs: [
+                ...logs,
+                {
+                  message: '✅ Задача завершена (результат не получен)',
+                  type: 'info',
+                  timestamp: new Date().toISOString()
+                }
+              ]
             })
           }
           
@@ -306,7 +338,8 @@ function Parser() {
             ...logs,
             {
               message: '❌ Парсинг завершен с ошибкой',
-              type: 'error'
+              type: 'error',
+              timestamp: new Date().toISOString()
             }
           ]
           
@@ -317,18 +350,36 @@ function Parser() {
             duration: formatDuration(startTime, new Date())
           })
           
+          setLogs(prev => [...prev, {
+            message: '❌ Парсинг завершен с ошибкой',
+            type: 'error',
+            timestamp: new Date().toISOString()
+          }])
+          
           setLoading(false)
         }
-  
+
       } catch (err) {
         console.error('Ошибка опроса:', err)
-        if (err.code === 'ECONNABORTED') {
+        
+        if (err.code === 'ECONNABORTED' && attempt < maxAttempts) {
+          attempt++
           setTimeout(poll, 2000)
         } else {
+          const errorLogs = [
+            ...logs,
+            {
+              message: `❌ Ошибка связи с сервером: ${err.message}`,
+              type: 'error',
+              timestamp: new Date().toISOString()
+            }
+          ]
+          
           updateHistoryItem(id, {
             status: 'failed',
             endTime: new Date().toISOString(),
             error: err.message,
+            logs: errorLogs,
             duration: formatDuration(startTime, new Date())
           })
           
@@ -337,11 +388,10 @@ function Parser() {
         }
       }
     }
-  
+
     poll()
   }
 
-  // Вспомогательная функция для форматирования времени
   const formatDuration = (start, end) => {
     const startDate = new Date(start)
     const endDate = new Date(end)
@@ -354,7 +404,6 @@ function Parser() {
   }
 
   const getFolderName = (path) => {
-    // Ищем папку в дереве
     const findFolder = (folders, targetPath) => {
       for (const folder of folders) {
         if (folder.path === targetPath) return folder
@@ -412,6 +461,10 @@ function Parser() {
     setExpandedFolders({})
   }
 
+  const openHistory = () => {
+    setHistoryOpen(true)
+  }
+
   const folderInfo = getSelectedFolderInfo()
 
   return (
@@ -421,9 +474,19 @@ function Parser() {
       </Typography>
 
       <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>
-          Выбор папки для парсинга
-        </Typography>
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+          <Typography variant="h6">
+            Выбор папки для парсинга
+          </Typography>
+          <Button
+            variant="outlined"
+            startIcon={<HistoryIcon />}
+            onClick={openHistory}
+            size="small"
+          >
+            История
+          </Button>
+        </Box>
 
         {refreshing && (
           <LinearProgress sx={{ mb: 2 }} />
@@ -556,21 +619,29 @@ function Parser() {
         {taskId && (
           <Alert severity="info" sx={{ mt: 2 }}>
             <strong>ID задачи:</strong> {taskId}
+            {historyId && <><br /><strong>ID истории:</strong> {historyId}</>}
           </Alert>
         )}
       </Paper>
 
       <Card>
         <CardContent>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems:center, mb: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
             <Typography variant="h6">
               Логи парсинга
             </Typography>
-            <Tooltip title="Очистить логи">
-              <IconButton onClick={clearLogs} size="small" disabled={loading}>
-                <RefreshIcon />
-              </IconButton>
-            </Tooltip>
+            <Box>
+              <Tooltip title="Очистить логи">
+                <IconButton onClick={clearLogs} size="small" disabled={loading}>
+                  <RefreshIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Открыть историю">
+                <IconButton onClick={openHistory} size="small">
+                  <HistoryIcon />
+                </IconButton>
+              </Tooltip>
+            </Box>
           </Box>
 
           <LogViewer logs={logs} />
@@ -582,20 +653,25 @@ function Parser() {
           <strong>📋 Функционал парсера:</strong>
           <ul style={{ marginTop: 8, marginBottom: 8, paddingLeft: 20 }}>
             <li>Поддержка вложенных папок и древовидной структуры</li>
-            <li>Автоматическое определение UCA и УльтраЗвук файлов</li>
+            <li>Автоматическое определение UCA и других файлов</li>
             <li>Сортировка UCA файлов по категориям: Density, Strength, Cement</li>
+            <li>Другое файлы сохраняются в папку "Другое"</li>
             <li>Сохранение результатов в Excel формате</li>
             <li>Создание структурированных папок для результатов</li>
+            <li>Полное сохранение логов в истории</li>
           </ul>
 
           <Box sx={{ mt: 1, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
             <Chip icon={<DataObjectIcon />} label="UCA файлы" size="small" color="primary" variant="outlined" />
-            <Chip icon={<DescriptionIcon />} label="Текстовые файлы" size="small" color="secondary" variant="outlined" />
+            <Chip icon={<DescriptionIcon />} label="Другие файлы" size="small" color="secondary" variant="outlined" />
             <Chip label="Excel экспорт" size="small" variant="outlined" />
             <Chip label="Древовидная структура" size="small" variant="outlined" />
+            <Chip label="История логов" size="small" variant="outlined" />
           </Box>
         </Typography>
       </Paper>
+
+      <History isOpen={historyOpen} onClose={() => setHistoryOpen(false)} />
     </Box>
   )
 }

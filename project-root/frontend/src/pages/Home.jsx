@@ -186,7 +186,8 @@ function Home() {
     setTaskId(null)
 
     try {
-      const response = await axios.post(`${API_URL}/api/process-files`, {
+      // ИСПРАВЛЕНО: используем правильный эндпоинт /api/find-broken-files
+      const response = await axios.post(`${API_URL}/api/find-broken-files`, {
         path: selectedFolder
       }, {
         timeout: 60000
@@ -194,7 +195,7 @@ function Home() {
 
       setTaskId(response.data.task_id)
       setLogs([{
-        message: `🚀 Обработка запущена. Папка: ${getFolderName(selectedFolder)}`,
+        message: `🚀 Поиск битых файлов запущен. Папка: ${getFolderName(selectedFolder)}`,
         type: 'info'
       }])
 
@@ -426,7 +427,7 @@ function Home() {
             size="large"
             sx={{ minWidth: 200 }}
           >
-            {loading ? 'Обработка...' : 'Начать обработку'}
+            {loading ? 'Поиск...' : 'Найти битые файлы'}
           </Button>
 
           <Button
@@ -485,16 +486,16 @@ function Home() {
           <strong>📋 Информация о системе:</strong>
           <ul style={{ marginTop: 8, marginBottom: 8, paddingLeft: 20 }}>
             <li>Поддержка вложенных папок и древовидной структуры</li>
-            <li>Автоматическое сканирование папок с .txt файлами</li>
-            <li>Обработка UCA и УльтраЗвук файлов</li>
-            <li>Генерация отчетов в Excel формате</li>
+            <li>Поиск битых .tst файлов без парных .txt файлов</li>
+            <li>Автоматическое перемещение битых файлов в папку "Изолированные_Битые"</li>
+            <li>Рекурсивная обработка всех вложенных папок</li>
             <li>Реальное время отслеживания процесса</li>
           </ul>
 
           <Box sx={{ mt: 1, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-            <Chip icon={<DataObjectIcon />} label="UCA файлы" size="small" color="primary" variant="outlined" />
-            <Chip icon={<DescriptionIcon />} label="Текстовые файлы" size="small" color="secondary" variant="outlined" />
-            <Chip label="Excel экспорт" size="small" variant="outlined" />
+            <Chip icon={<DescriptionIcon />} label=".tst файлы" size="small" color="primary" variant="outlined" />
+            <Chip icon={<DescriptionIcon />} label=".txt файлы" size="small" color="secondary" variant="outlined" />
+            <Chip label="Поиск битых файлов" size="small" variant="outlined" />
             <Chip label="Древовидная структура" size="small" variant="outlined" />
           </Box>
         </Typography>

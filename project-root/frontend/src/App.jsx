@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import { AppBar, Toolbar, Typography, Container, Box, Button, IconButton, Tooltip } from '@mui/material'
 import HomeIcon from '@mui/icons-material/Home'
 import FolderIcon from '@mui/icons-material/Folder'
+import HistoryIcon from '@mui/icons-material/History'
 import DescriptionIcon from '@mui/icons-material/Description'
 import Home from './pages/Home'
 import Parser from './pages/Parser'
+import History from './components/History'
 
 function App() {
+  const [historyOpen, setHistoryOpen] = useState(false)
+
   return (
     <React.Fragment>
       <AppBar position="static">
@@ -47,6 +51,19 @@ function App() {
                 Парсер
               </Button>
             </Tooltip>
+            <Tooltip title="История обработки">
+              <Button 
+                color="inherit" 
+                onClick={() => setHistoryOpen(true)}
+                startIcon={<HistoryIcon />}
+                sx={{ 
+                  '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' },
+                  borderRadius: 2
+                }}
+              >
+                История
+              </Button>
+            </Tooltip>
           </Box>
         </Toolbar>
       </AppBar>
@@ -78,6 +95,8 @@ function App() {
           </Typography>
         </Container>
       </Box>
+
+      <History isOpen={historyOpen} onClose={() => setHistoryOpen(false)} />
     </React.Fragment>
   )
 }

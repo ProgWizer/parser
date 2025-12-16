@@ -35,6 +35,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import LogViewer from '../components/LogViewer'
 import axios from 'axios'
+import { saveToHistory, updateHistoryItem } from '../utils/history'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -47,6 +48,7 @@ function Home() {
   const [logs, setLogs] = useState([])
   const [error, setError] = useState('')
   const [refreshing, setRefreshing] = useState(false)
+  const [startTime, setStartTime] = useState(null)
 
   useEffect(() => {
     loadFolders()
@@ -184,22 +186,36 @@ function Home() {
     setError('')
     setLogs([])
     setTaskId(null)
+    const currentStartTime = new Date().toISOString()
+    setStartTime(currentStartTime)
 
     try {
-      // ИСПРАВЛЕНО: используем правильный эндпоинт /api/find-broken-files
       const response = await axios.post(`${API_URL}/api/find-broken-files`, {
         path: selectedFolder
       }, {
         timeout: 60000
       })
 
-      setTaskId(response.data.task_id)
+      const newTaskId = response.data.task_id
+      
+      // Сохраняем в историю
+      saveToHistory({
+        taskId: newTaskId,
+        type: 'find-broken',
+        path: selectedFolder,
+        folderName: getFolderName(selectedFolder),
+        startTime: currentStartTime,
+        status: 'running',
+        logs: []
+      })
+
+      setTaskId(newTaskId)
       setLogs([{
         message: `🚀 Поиск битых файлов запущен. Папка: ${getFolderName(selectedFolder)}`,
         type: 'info'
       }])
 
-      pollLogs(response.data.task_id)
+      pollLogs(newTaskId, currentStartTime)
 
     } catch (err) {
       console.error('Ошибка запуска обработки:', err)
@@ -208,7 +224,7 @@ function Home() {
     }
   }
 
-  const pollLogs = async (id) => {
+  const pollLogs = async (id, startTime) => {
     const poll = async () => {
       try {
         const response = await axios.get(`${API_URL}/api/task/${id}/logs`, {
@@ -227,27 +243,53 @@ function Home() {
         }
 
         if (taskStatus === 'running') {
-          setTimeout(poll, 1500)
+          setTimeout(() => poll(id, startTime), 1500)
         } else if (taskStatus === 'completed') {
-          setLogs(prev => [...prev, {
-            message: '✅ Обработка завершена успешно!',
+          const finalLogs = [...logs, {
+            message: '✅ Поиск битых файлов завершен успешно!',
             type: 'success'
-          }])
+          }]
+          
+          // Обновляем историю
+          updateHistoryItem(id, {
+            status: 'completed',
+            endTime: new Date().toISOString(),
+            logs: finalLogs,
+            duration: formatDuration(startTime, new Date())
+          })
+          
           setLoading(false)
           setTimeout(loadFolders, 1000)
         } else if (taskStatus === 'failed') {
-          setLoading(false)
-          setLogs(prev => [...prev, {
-            message: '❌ Обработка завершена с ошибкой',
+          const finalLogs = [...logs, {
+            message: '❌ Поиск битых файлов завершен с ошибкой',
             type: 'error'
-          }])
+          }]
+          
+          // Обновляем историю
+          updateHistoryItem(id, {
+            status: 'failed',
+            endTime: new Date().toISOString(),
+            logs: finalLogs,
+            duration: formatDuration(startTime, new Date())
+          })
+          
+          setLoading(false)
         }
 
       } catch (err) {
         console.error('Ошибка опроса:', err)
         if (err.code === 'ECONNABORTED') {
-          setTimeout(poll, 2000)
+          setTimeout(() => poll(id, startTime), 2000)
         } else {
+          // Обновляем историю при ошибке
+          updateHistoryItem(id, {
+            status: 'failed',
+            endTime: new Date().toISOString(),
+            error: err.message,
+            duration: formatDuration(startTime, new Date())
+          })
+          
           setLoading(false)
           setError('Ошибка связи с сервером')
         }
@@ -255,6 +297,18 @@ function Home() {
     }
 
     poll()
+  }
+
+  // Вспомогательная функция для форматирования времени
+  const formatDuration = (start, end) => {
+    const startDate = new Date(start)
+    const endDate = new Date(end)
+    const duration = endDate - startDate
+    const seconds = Math.floor(duration / 1000)
+    if (seconds < 60) return `${seconds} сек`
+    const minutes = Math.floor(seconds / 60)
+    const remainingSeconds = seconds % 60
+    return `${minutes} мин ${remainingSeconds} сек`
   }
 
   const getFolderName = (path) => {

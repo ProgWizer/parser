@@ -20,7 +20,7 @@ services:
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public
       - /app/node_modules
-      - ./data:/app/data  # Фронтенд тоже видит данные
+      - ./data:/app/data  
     environment:
       - VITE_API_URL=http://localhost:8000
     depends_on:

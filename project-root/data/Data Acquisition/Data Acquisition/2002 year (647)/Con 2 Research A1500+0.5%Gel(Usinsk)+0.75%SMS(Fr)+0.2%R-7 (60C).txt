@@ -1,0 +1,41 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #2
+Instrument Type	Consistometer
+Instrument Serial Number	128
+Test Start Date	10.09.2002
+Test Start Time	9:20:02
+Test Stop Date	
+Test Stop Time	
+Test Length	
+Final Sample Time Offset	
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 25(40min) T:60(40min) , Gel-Usinsk, SMS-French
+Information	WellID	
+Information	Customer	Petro-Aliance
+Information	CementClass	A
+Information	CementMfr	Sukhoy Log
+Information	Additives	0.5%Gel+0.75%SMS+0.2%R-7
+Information	Density	1500
+Information	BHCT	60
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	Research
+Calculated Value	Thickening_Time	N/A
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	25 °C
+Initial Pressure (MPa)	1 MPa
+Initial Consistency (Bc)	10 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	25	1	10
+0:01:00	25	3	8
+0:02:00	25	3	6
+0:03:00	25	4	6
+0:04:00	26	5	6
+0:05:00	26	5	6
+0:06:00	26	6	6
+0:07:00	27	7	9
+0:08:00	28	7	4
+0:09:00	28	8	9

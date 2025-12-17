@@ -1,0 +1,119 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #2
+Instrument Type	Consistometer
+Instrument Serial Number	128
+Test Start Date	01.02.2002
+Test Start Time	22:58:15
+Test Stop Date	02.02.2002
+Test Stop Time	0:23:13
+Test Length	1:24:58
+Final Sample Time Offset	1:24:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 50 (40min); T: 105C(50min), 150C(30min); tap water, premix
+Information	WellID	
+Information	Customer	Petro-Aliance
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	28%SF+1.5%LignoSulf
+Information	Density	1960
+Information	BHCT	150
+Information	BHST	150
+Information	FluidLoss	
+Information	JobType	Research
+Calculated Value	Thickening_Time	1:23:00
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	21 °C
+Final Temperature (°C)	160 °C
+Initial Pressure (MPa)	1 MPa
+Final Pressure (MPa)	50 MPa
+Initial Consistency (Bc)	15 Bc
+Final Consistency (Bc)	96 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	21	1	15
+0:01:00	20	3	30
+0:02:00	21	4	20
+0:03:00	21	5	17
+0:04:00	21	7	21
+0:05:00	22	8	24
+0:06:00	23	9	19
+0:07:00	25	11	21
+0:08:00	26	12	25
+0:09:00	28	14	19
+0:10:00	30	15	24
+0:11:00	32	16	23
+0:12:00	34	17	25
+0:13:00	37	18	25
+0:14:00	39	19	30
+0:15:00	41	21	19
+0:16:00	43	22	24
+0:17:00	45	23	19
+0:18:00	47	24	25
+0:19:00	49	25	18
+0:20:00	51	27	17
+0:21:00	53	28	18
+0:22:00	55	29	19
+0:23:00	57	30	19
+0:24:00	59	32	18
+0:25:00	60	33	19
+0:26:00	62	34	19
+0:27:00	64	35	20
+0:28:00	65	36	19
+0:29:00	67	37	25
+0:30:00	69	39	19
+0:31:00	71	40	22
+0:32:00	73	41	24
+0:33:00	74	42	20
+0:34:00	76	44	18
+0:35:00	78	45	18
+0:36:00	79	46	21
+0:37:00	81	47	16
+0:38:00	83	48	17
+0:39:00	84	50	17
+0:40:00	86	51	16
+0:41:00	88	51	16
+0:42:00	89	51	18
+0:43:00	91	51	22
+0:44:00	92	51	25
+0:45:00	94	51	19
+0:46:00	96	51	21
+0:47:00	98	51	20
+0:48:00	99	51	19
+0:49:00	101	51	18
+0:50:00	102	51	22
+0:51:00	104	51	21
+0:52:00	106	51	29
+0:53:00	107	51	26
+0:54:00	109	51	24
+0:55:00	110	51	23
+0:56:00	112	51	18
+0:57:00	113	51	17
+0:58:00	115	51	15
+0:59:00	116	51	14
+1:00:00	118	51	12
+1:01:00	119	51	12
+1:02:00	121	51	10
+1:03:00	122	51	10
+1:04:00	123	51	10
+1:05:00	124	51	10
+1:06:00	125	51	9
+1:07:00	126	51	9
+1:08:00	127	51	9
+1:09:00	129	51	9
+1:10:00	130	51	9
+1:11:00	131	51	9
+1:12:00	132	51	9
+1:13:00	134	51	9
+1:14:00	135	51	9
+1:15:00	137	51	11
+1:16:00	139	51	11
+1:17:00	140	51	13
+1:18:00	142	51	13
+1:19:00	143	51	24
+1:20:00	146	51	28
+1:21:00	149	51	36
+1:22:00	153	51	70
+1:23:00	157	51	88
+1:24:00	160	50	96

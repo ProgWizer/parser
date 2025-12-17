@@ -1,0 +1,96 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222-09-1
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	24.02.2012
+Test Start Time	16:35:10
+Test Stop Date	24.02.2012
+Test Stop Time	17:35:21
+Test Length	1:00:11
+Final Sample Time Offset	1:00:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 26(35), T,C: 45(35) 41%MgO+59%MgCl2
+Information	WellID	Research
+Information	Customer	Trican
+Information	CementClass	Thermal LX
+Information	CementMfr	Sukhoy-Log (Dykerhoff)
+Information	Additives	no
+Information	Density	1610
+Information	BHCT	45
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	30Bc - TT	0:29:00
+Calculated Value	70Bc - TT	N/A
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	29 °C
+Final Temperature (°C)	23 °C
+Initial Pressure (MPa)	1,2 MPa
+Final Pressure (MPa)	0,0 MPa
+Initial Consistency (Bc)	10 Bc
+Final Consistency (Bc)	-1 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	29	1,2	10
+0:01:00	28	2,3	12
+0:02:00	28	4,2	11
+0:03:00	29	4,2	9
+0:04:00	31	4,4	10
+0:05:00	31	5,1	10
+0:06:00	31	6,0	11
+0:07:00	30	7,4	6
+0:08:00	32	7,1	7
+0:09:00	33	7,7	5
+0:10:00	33	8,6	3
+0:11:00	33	9,8	6
+0:12:00	33	10,7	6
+0:13:00	35	10,5	10
+0:14:00	35	11,2	5
+0:15:00	35	12,5	3
+0:16:00	35	13,5	3
+0:17:00	37	13,2	6
+0:18:00	37	13,9	5
+0:19:00	37	14,9	9
+0:20:00	37	15,9	4
+0:21:00	39	16,1	4
+0:22:00	39	16,6	6
+0:23:00	40	17,4	5
+0:24:00	39	18,4	8
+0:25:00	40	19,2	17
+0:26:00	42	19,5	23
+0:27:00	43	20,1	25
+0:28:00	43	20,9	35
+0:29:00	43	21,9	45
+0:30:00	43	22,6	57
+0:31:00	43	23,6	75
+0:32:00	44	18,9	-1
+0:33:00	44	1,3	-1
+0:34:00	44	0,9	-1
+0:35:00	45	0,5	-1
+0:36:00	41	-0,0	-1
+0:37:00	33	-0,0	-1
+0:38:00	29	-0,0	-1
+0:39:00	27	-0,0	-1
+0:40:00	25	-0,0	-1
+0:41:00	24	0,0	-1
+0:42:00	24	0,0	-1
+0:43:00	23	-0,0	-1
+0:44:00	23	0,0	-1
+0:45:00	23	-0,0	-1
+0:46:00	23	-0,0	-1
+0:47:00	23	0,0	-1
+0:48:00	23	0,0	-1
+0:49:00	23	0,0	-1
+0:50:00	23	-0,0	-1
+0:51:00	23	-0,0	-1
+0:52:00	23	0,0	-1
+0:53:00	23	0,0	-1
+0:54:00	23	-0,0	-1
+0:55:00	23	0,0	-1
+0:56:00	23	-0,0	-1
+0:57:00	23	0,0	-1
+0:58:00	23	-0,0	-1
+0:59:00	23	-0,0	-1
+1:00:00	23	0,0	-1

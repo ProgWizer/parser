@@ -1,0 +1,71 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	UCA Left Cell
+Instrument Type	Model 4262 Twin Cell UCA
+Instrument Serial Number	
+Test Start Date	31.01.2014
+Test Start Time	12:38:22
+Test Stop Date	31.01.2014
+Test Stop Time	12:52:56
+Test Length	0:14:34
+Final Sample Time Offset	0:14:30
+Controller Schedule Name	
+Sampling Period	30 seconds
+Comments	
+Information	WellID	
+Information	Customer	
+Information	EngName	
+Information	CementClass	
+Information	CementMfr	
+Information	Additives	
+Information	Density	
+Information	BHCT	
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	CS_50	N/A
+Calculated Value	CS_500	N/A
+Calculated Value	CS_Time8h	N/A
+Calculated Value	CS_Time12h	N/A
+Calculated Value	CS_Time24h	N/A
+Calculated Value	CS_Time48h	N/A
+Calculated Value	CS_Time72h	N/A
+Calculated Curve	Compressive Strength	Compressive strength type A (less than 14 lb/gal)
+Initial Temperature (°C)	24 °C
+Final Temperature (°C)	-4 °C
+Initial Transit Time (microsec/in)	ERROR
+Final Transit Time (microsec/in)	ERROR
+Initial Compressive Strength (MPa)	N/A
+Final Compressive Strength (MPa)	N/A
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Transit Time (microsec/in)	Compressive Strength (MPa)
+0:00:00	24		
+0:00:30	24		
+0:01:00	14		
+0:01:30	10		
+0:02:00	7		
+0:02:30	5		
+0:03:00	3		
+0:03:30	1		
+0:04:00	-1		
+0:04:30	-2		
+0:05:00	-3		
+0:05:30	-4		
+0:06:00	-5		
+0:06:30	-5		
+0:07:00	-6		
+0:07:30	-7		
+0:08:00	-7		
+0:08:30	-8		
+0:09:00	-8		
+0:09:30	-8		
+0:10:00	-9		
+0:10:30	-9		
+0:11:00	-9		
+0:11:30	-9		
+0:12:00	-3		
+0:12:30	-3		
+0:13:00	-3		
+0:13:30	-3		
+0:14:00	-3		
+0:14:30	-4		

@@ -1,0 +1,117 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#1
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	113
+Test Start Date	25.12.2003
+Test Start Time	10:53:11
+Test Stop Date	25.12.2003
+Test Stop Time	12:14:12
+Test Length	1:21:01
+Final Sample Time Offset	1:21:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 21(40min) T:30(40min), TA-1 rus, all dryblend
+Information	WellID	8
+Information	Customer	SeverTEK
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	0.6%Diacel FL+0.6%RPM+2.5%TA-1
+Information	Density	1900
+Information	BHCT	30
+Information	BHST	32
+Information	FluidLoss	
+Information	JobType	177.8 csg tail slurry
+Calculated Value	30Bc - TT	1:07:00
+Calculated Value	70Bc - TT	1:21:00
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	23 °C
+Final Temperature (°C)	30 °C
+Initial Pressure (MPa)	2,0 MPa
+Final Pressure (MPa)	21,9 MPa
+Initial Consistency (Bc)	19 Bc
+Final Consistency (Bc)	76 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	23	2,0	19
+0:01:00	23	2,5	19
+0:02:00	23	3,1	19
+0:03:00	23	3,4	19
+0:04:00	23	4,1	19
+0:05:00	24	4,5	24
+0:06:00	24	4,9	22
+0:07:00	24	5,7	29
+0:08:00	24	6,2	25
+0:09:00	24	6,7	23
+0:10:00	25	6,7	22
+0:11:00	25	7,3	19
+0:12:00	25	7,8	29
+0:13:00	25	8,3	22
+0:14:00	25	8,8	24
+0:15:00	26	9,4	23
+0:16:00	26	10,0	23
+0:17:00	26	10,5	24
+0:18:00	26	10,6	21
+0:19:00	26	11,1	24
+0:20:00	26	11,5	25
+0:21:00	27	12,1	25
+0:22:00	27	12,7	24
+0:23:00	27	13,2	20
+0:24:00	27	13,8	24
+0:25:00	28	14,3	22
+0:26:00	28	14,8	25
+0:27:00	28	14,8	22
+0:28:00	28	15,3	21
+0:29:00	28	15,8	24
+0:30:00	28	16,4	25
+0:31:00	28	16,7	26
+0:32:00	29	17,5	25
+0:33:00	29	18,0	23
+0:34:00	29	18,6	25
+0:35:00	29	18,8	22
+0:36:00	29	19,3	23
+0:37:00	29	20,0	28
+0:38:00	29	20,2	26
+0:39:00	30	20,8	22
+0:40:00	30	21,0	21
+0:41:00	30	21,3	20
+0:42:00	30	21,4	21
+0:43:00	30	21,4	21
+0:44:00	30	21,5	21
+0:45:00	30	21,4	21
+0:46:00	31	21,2	21
+0:47:00	31	21,0	21
+0:48:00	31	20,9	21
+0:49:00	31	21,1	21
+0:50:00	31	21,2	21
+0:51:00	31	21,0	21
+0:52:00	31	21,3	22
+0:53:00	31	21,2	21
+0:54:00	31	21,0	21
+0:55:00	31	20,9	21
+0:56:00	31	21,2	21
+0:57:00	31	21,1	25
+0:58:00	31	21,1	24
+0:59:00	31	21,0	24
+1:00:00	31	20,9	24
+1:01:00	31	21,4	25
+1:02:00	31	21,2	26
+1:03:00	31	21,2	26
+1:04:00	31	21,2	27
+1:05:00	31	21,1	27
+1:06:00	30	21,0	31
+1:07:00	30	21,0	36
+1:08:00	30	21,0	36
+1:09:00	30	20,9	49
+1:10:00	30	21,3	38
+1:11:00	30	21,3	45
+1:12:00	30	21,3	53
+1:13:00	30	21,4	48
+1:14:00	30	21,4	49
+1:15:00	30	21,6	75
+1:16:00	30	21,6	50
+1:17:00	30	21,8	58
+1:18:00	30	21,3	70
+1:19:00	30	21,5	68
+1:20:00	30	21,8	73
+1:21:00	30	21,9	76

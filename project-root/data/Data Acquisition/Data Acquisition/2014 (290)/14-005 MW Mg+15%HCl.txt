@@ -1,0 +1,87 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	
+Test Start Date	22.01.2014
+Test Start Time	15:28:49
+Test Stop Date	22.01.2014
+Test Stop Time	15:37:18
+Test Length	0:08:29
+Final Sample Time Offset	0:08:20
+Controller Schedule Name	
+Sampling Period	10 seconds
+Comments	
+Information	WellID	
+Information	Customer	
+Information	EngName	
+Information	CementClass	
+Information	CementMfr	
+Information	Additives	
+Information	Density	
+Information	BHCT	
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	Time_30Bc	N/A
+Calculated Value	Time_70Bc	N/A
+Calculated Value	Time_100Bc	N/A
+Initial Temperature (°C)	18 °C
+Final Temperature (°C)	1355 °C
+Initial Pressure (MPa)	0,1 MPa
+Final Pressure (MPa)	0,1 MPa
+Initial Consistency (Bc)	-0 Bc
+Final Consistency (Bc)	-0 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	18	0,1	-0
+0:00:10	18	0,1	-0
+0:00:20	18	0,1	-0
+0:00:30	26	0,1	-0
+0:00:40	30	0,1	-0
+0:00:50	31	0,1	-0
+0:01:00	31	0,1	-0
+0:01:10	41	0,1	-0
+0:01:20	43	0,1	-0
+0:01:30	45	0,1	-0
+0:01:40	51	0,1	-0
+0:01:50	43	0,1	-0
+0:02:00	79	0,1	-0
+0:02:10	68	0,1	-0
+0:02:20	74	0,1	-0
+0:02:30	82	0,1	-0
+0:02:40	89	0,1	-0
+0:02:50	91	0,1	-0
+0:03:00	55	0,1	-0
+0:03:10	80	0,1	-0
+0:03:20	71	0,1	-0
+0:03:30	-1147	0,1	-0
+0:03:40	-1145	0,1	-0
+0:03:50	69	0,1	-0
+0:04:00	840	0,1	-0
+0:04:10	1253	0,1	-0
+0:04:20	1358	0,1	-0
+0:04:30	1359	0,1	-0
+0:04:40	1360	0,1	-0
+0:04:50	1354	0,1	-0
+0:05:00	1355	0,1	-0
+0:05:10	1358	0,1	-0
+0:05:20	1350	0,1	-0
+0:05:30	1362	0,1	-0
+0:05:40	1353	0,1	-0
+0:05:50	1358	0,1	-0
+0:06:00	1358	0,1	-0
+0:06:10	1363	0,1	-0
+0:06:20	1354	0,1	-0
+0:06:30	1357	0,1	-0
+0:06:40	1355	0,1	-0
+0:06:50	1357	0,1	-0
+0:07:00	1353	0,1	-0
+0:07:10	1353	0,1	-0
+0:07:20	1351	0,1	-0
+0:07:30	1351	0,1	-0
+0:07:40	1358	0,1	-0
+0:07:50	1351	0,1	-0
+0:08:00	1351	0,1	-0
+0:08:10	1364	0,1	-0
+0:08:20	1355	0,1	-0

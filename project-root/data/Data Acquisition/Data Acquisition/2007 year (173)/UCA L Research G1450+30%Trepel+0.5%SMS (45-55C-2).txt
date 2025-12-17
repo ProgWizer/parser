@@ -1,0 +1,95 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	4262L
+Instrument Type	Model 4262 Twin Cell UCA
+Instrument Serial Number	111L
+Test Start Date	13.06.2007
+Test Start Time	16:15:24
+Test Stop Date	14.06.2007
+Test Stop Time	9:22:49
+Test Length	17:07:25
+Final Sample Time Offset	17:06:46
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	
+Information	WellID	
+Information	Customer	
+Information	CementClass	
+Information	CementMfr	
+Information	Additives	
+Information	Density	
+Information	BHCT	
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	CS_50	N/A
+Calculated Value	CS_500	N/A
+Calculated Value	CS_Time8h	N/A
+Calculated Value	CS_Time16h	N/A
+Calculated Value	CS_Time24h	N/A
+Calculated Value	CS_Time48h	N/A
+Calculated Value	CS_Time72h	N/A
+Calculated Curve	Compressive Strength	Compressive strength type A (less than 14 lb/gal)
+Initial Temperature (°C)	27 °C
+Final Temperature (°C)	32 °C
+Initial Transit Time (microsec/in)	ERROR
+Final Transit Time (microsec/in)	20,04 microsec/in
+Initial Compressive Strength (MPa)	N/A
+Final Compressive Strength (MPa)	0,01 MPa
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Transit Time (microsec/in)	Compressive Strength (MPa)
+0:00:00	27		
+0:01:00	27		
+0:02:00	27		
+0:03:00	27		
+0:04:00	27		
+0:05:00	27		
+0:09:05			
+0:09:05	29		
+0:10:05	29		
+0:11:05	29		
+16:23:46			
+16:23:46	32	20,11	0,00
+16:24:46	32	20,11	0,00
+16:25:46	32	20,11	0,00
+16:26:46	33	20,11	0,00
+16:27:46	32	20,11	0,00
+16:28:46	32	20,10	0,00
+16:29:46	32	20,11	0,00
+16:30:46	32	20,11	0,00
+16:31:46	32	20,10	0,00
+16:32:46	32	20,10	0,00
+16:33:46	32	20,10	0,00
+16:34:46	32	20,09	0,00
+16:35:46	33	20,09	0,00
+16:36:46	32	20,09	0,00
+16:37:46	32	20,09	0,00
+16:38:46	32	20,09	0,00
+16:39:46	32	20,08	0,00
+16:40:46	32	20,08	0,00
+16:41:46	33	20,08	0,00
+16:42:46	32	20,07	0,00
+16:43:46	33	20,08	0,00
+16:44:46	33	20,08	0,00
+16:45:46	32	20,08	0,00
+16:46:46	33	20,08	0,00
+16:47:46	32	20,07	0,00
+16:48:46	32	20,07	0,00
+16:49:46	32	20,07	0,00
+16:50:46	32	20,07	0,00
+16:51:46	32	20,07	0,00
+16:52:46	33	20,07	0,00
+16:53:46	32	20,07	0,00
+16:54:46	32	20,07	0,00
+16:55:46	32	20,06	0,01
+16:56:46	33	20,06	0,01
+16:57:46	32	20,06	0,01
+16:58:46	32	20,06	0,01
+16:59:46	32	20,05	0,01
+17:00:46	32	20,06	0,01
+17:01:46	32	20,06	0,01
+17:02:46	32	20,05	0,01
+17:03:46	32	20,05	0,01
+17:04:46	32	20,05	0,01
+17:05:46	32	20,05	0,01
+17:06:46	32	20,04	0,01

@@ -1,0 +1,41 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	4262 Left Cell
+Instrument Type	Model 4262 Twin Cell UCA
+Instrument Serial Number	
+Test Start Date	13.12.2012
+Test Start Time	15:17:09
+Test Stop Date	13.12.2012
+Test Stop Time	15:22:05
+Test Length	0:04:56
+Final Sample Time Offset	0:04:30
+Controller Schedule Name	
+Sampling Period	30 seconds
+Comments	T: 50C(30min); P: 3000 psi; tap water
+Information	WellID	Research
+Information	Customer	Trican
+Information	EngName	Lebedev Pavel
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff-Sukhoy Log
+Information	Additives	47.5%G+28%Fly Ash+14.5%Silica Fume+10%MKGL (BVOB)+2%TA-1+0.5%SMS+0.5%PPB+2%FA-1 (BWOC)
+Information	Density	1350
+Information	BHCT	50
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	Research
+Initial Temp°rature (∞C)	23 ∞C
+Final Temp°rature (∞C)	24 ∞C
+Initial Tranëit Time (micrçsec/in)	16,49 micrçsec/in
+Final Tranëit Time (micrçsec/in)	16,50 micrçsec/in
+--Data--
+Time (HH:MM:SS)	Temp°rature (∞C)	Tranëit Time (micrçsec/in)
+0:00:00	23	16,49
+0:00:30	23	16,50
+0:01:00	23	16,50
+0:01:30	24	16,50
+0:02:00	24	16,50
+0:02:30	24	16,50
+0:03:00	24	16,50
+0:03:30	24	16,50
+0:04:00	24	16,50
+0:04:30	24	16,50

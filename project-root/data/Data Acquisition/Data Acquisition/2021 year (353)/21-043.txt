@@ -1,0 +1,53 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	SGSA/UCA
+Instrument Type	Model 5265 SGSA/UCA
+Instrument Serial Number	
+Test Start Date	12.03.2021
+Test Start Time	9:23:20
+Test Stop Date	12.03.2021
+Test Stop Time	9:24:17
+Test Length	0:00:57
+Final Sample Time Offset	0:00:30
+Controller Schedule Name	
+Sampling Period	30 seconds
+Comments	
+Information	WellID	
+Information	Customer	
+Information	EngName	
+Information	CementClass	
+Information	CementMfr	
+Information	Additives	
+Information	Density	
+Information	BHCT	
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	CS_50	N/A
+Calculated Value	CS_500	N/A
+Calculated Value	SGS_Initial	N/A
+Calculated Value	SGS_Final	N/A
+Calculated Value	CS_Time8h	N/A
+Calculated Value	CS_Time12h	N/A
+Calculated Value	Time_SGS_100lb/100ft2	N/A
+Calculated Value	Time_SGS_500lb/100ft2	N/A
+Calculated Value	CS_Time24h	N/A
+Calculated Value	CS_Time48h	N/A
+Calculated Curve	Compressive Strength	Compressive strength type B (more than 14 lb/gal)
+Calculated Curve	Static Gel Strength	Static gel strength
+Initial Temperature (°C)	41 °C
+Final Temperature (°C)	40 °C
+Initial Pressure (psi)	2897 psi
+Final Pressure (psi)	2909 psi
+Initial Transit Time (microsec/in)	8,13 microsec/in
+Final Transit Time (microsec/in)	8,13 microsec/in
+Initial Gel Value	7305
+Final Gel Value	7311
+Initial Compressive Strength (MPa)	0,00 MPa
+Final Compressive Strength (MPa)	0,00 MPa
+Initial Static Gel Strength (lb/100ft2)	N/A
+Final Static Gel Strength (lb/100ft2)	N/A
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (psi)	Transit Time (microsec/in)	Gel Value	Compressive Strength (MPa)	Static Gel Strength (lb/100ft2)
+0:00:00	41	2897	8,13	7305	0,00	
+0:00:30	40	2909	8,13	7311	0,00	

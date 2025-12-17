@@ -1,0 +1,99 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #2
+Instrument Type	Consistometer
+Instrument Serial Number	128
+Test Start Date	13.06.2002
+Test Start Time	23:38:17
+Test Stop Date	14.06.2002
+Test Stop Time	0:43:11
+Test Length	1:04:54
+Final Sample Time Offset	1:04:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 60(60min); T: 120C(40min); 140C(20min); tap water, premix HTR-200
+Information	WellID	
+Information	Customer	LUKOIL
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	30%SF+0.8%HTR-200 bwoc (0.615%bwodb)
+Information	Density	1950
+Information	BHCT	140
+Information	BHST	160
+Information	FluidLoss	
+Information	JobType	Research
+Calculated Value	Thickening_Time	1:03:00
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	24 °C
+Final Temperature (°C)	155 °C
+Initial Pressure (MPa)	1 MPa
+Final Pressure (MPa)	60 MPa
+Initial Consistency (Bc)	12 Bc
+Final Consistency (Bc)	90 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	24	1	12
+0:01:00	24	3	12
+0:02:00	24	4	12
+0:03:00	25	5	13
+0:04:00	25	7	13
+0:05:00	26	7	13
+0:06:00	28	8	14
+0:07:00	29	10	14
+0:08:00	31	10	14
+0:09:00	34	11	14
+0:10:00	36	12	14
+0:11:00	40	14	14
+0:12:00	43	14	13
+0:13:00	46	15	14
+0:14:00	50	16	16
+0:15:00	53	18	16
+0:16:00	56	18	17
+0:17:00	59	19	17
+0:18:00	61	20	16
+0:19:00	64	21	16
+0:20:00	67	22	16
+0:21:00	70	23	15
+0:22:00	73	24	15
+0:23:00	76	25	16
+0:24:00	79	26	16
+0:25:00	81	27	16
+0:26:00	84	28	15
+0:27:00	86	29	15
+0:28:00	89	30	15
+0:29:00	91	31	16
+0:30:00	93	32	15
+0:31:00	95	33	16
+0:32:00	97	34	16
+0:33:00	99	35	16
+0:34:00	102	36	16
+0:35:00	104	36	16
+0:36:00	106	37	16
+0:37:00	109	39	17
+0:38:00	111	39	17
+0:39:00	113	40	17
+0:40:00	115	41	18
+0:41:00	117	42	17
+0:42:00	119	43	18
+0:43:00	121	44	16
+0:44:00	123	45	16
+0:45:00	125	46	16
+0:46:00	127	47	17
+0:47:00	128	48	17
+0:48:00	129	49	17
+0:49:00	131	50	17
+0:50:00	132	51	16
+0:51:00	133	52	17
+0:52:00	134	53	16
+0:53:00	135	54	16
+0:54:00	136	54	15
+0:55:00	137	55	16
+0:56:00	138	56	16
+0:57:00	138	57	15
+0:58:00	140	58	15
+0:59:00	141	59	15
+1:00:00	142	60	16
+1:01:00	146	60	29
+1:02:00	151	60	91
+1:03:00	154	60	90
+1:04:00	155	60	90

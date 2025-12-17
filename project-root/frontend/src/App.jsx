@@ -91,7 +91,7 @@ function App() {
             © {new Date().getFullYear()} Обработчик файлов. Все права защищены.
           </Typography>
           <Typography variant="body2" color="text.secondary" align="center">
-            Система обработки UCA и УльтраЗвук файлов
+            Система обработки UCA и Других файлов
           </Typography>
         </Container>
       </Box>

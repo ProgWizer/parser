@@ -1,0 +1,52 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#2
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	01.12.2006
+Test Start Time	11:09:42
+Test Stop Date	
+Test Stop Time	
+Test Length	
+Final Sample Time Offset	
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 15(63), T:33(63)
+Information	WellID	n/a
+Information	Customer	TransEuro
+Information	CementClass	PCT-I-G
+Information	CementMfr	Dykerhoff
+Information	Additives	1%Gel+1.%SMS+4%CaCl2
+Information	Density	1500
+Information	BHCT	33
+Information	BHST	43
+Information	FluidLoss	
+Information	JobType	intermediate
+Calculated Value	30Bc - TT	N/A
+Calculated Value	70Bc - TT	N/A
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	28 °C
+Initial Pressure (MPa)	0,4 MPa
+Initial Consistency (Bc)	6 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	28	0,4	6
+0:01:00	28	0,2	6
+0:02:00	29	0,4	6
+0:03:00	29	0,7	5
+0:04:00	29	0,8	5
+0:05:00	29	1,0	5
+0:06:00	29	1,3	5
+0:07:00	29	1,6	5
+0:08:00	29	1,8	5
+0:09:00	29	2,1	5
+0:10:00	29	2,5	6
+0:11:00	29	2,7	4
+0:12:00	29	3,0	5
+0:13:00	29	3,1	4
+0:14:00	29	3,4	4
+0:15:00	29	3,5	4
+0:16:00	29	3,7	4
+0:17:00	29	4,0	3
+0:18:00	30	4,4	3
+0:19:00	30	4,5	4

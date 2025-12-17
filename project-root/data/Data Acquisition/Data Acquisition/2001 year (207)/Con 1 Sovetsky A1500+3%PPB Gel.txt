@@ -1,0 +1,85 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #1
+Instrument Type	Consistometer
+Instrument Serial Number	113
+Test Start Date	27.10.2001
+Test Start Time	21:55:56
+Test Stop Date	27.10.2001
+Test Stop Time	22:44:59
+Test Length	0:49:03
+Final Sample Time Offset	0:49:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 27(40min); T: 49C(40min), tap water, dry-blending;
+Test stopped - consistensy's too high.
+Information	WellID	5905 / 46
+Information	Customer	Sovetsky
+Information	CementClass	A
+Information	CementMfr	Suhoy Log
+Information	Additives	3%PPB Gel
+Information	Density	1500
+Information	BHCT	49
+Information	BHST	63
+Information	FluidLoss	
+Information	JobType	146 mm csg lead slurry
+Calculated Value	Thickening_Time	N/A
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	25 °C
+Final Temperature (°C)	50 °C
+Initial Pressure (MPa)	2 MPa
+Final Pressure (MPa)	27 MPa
+Initial Consistency (Bc)	17 Bc
+Final Consistency (Bc)	27 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	25	2	17
+0:01:00	25	3	16
+0:02:00	25	4	16
+0:03:00	25	4	16
+0:04:00	25	5	16
+0:05:00	25	6	16
+0:06:00	25	7	16
+0:07:00	26	7	16
+0:08:00	27	8	17
+0:09:00	28	9	17
+0:10:00	29	9	18
+0:11:00	30	10	18
+0:12:00	31	10	18
+0:13:00	32	11	18
+0:14:00	33	11	19
+0:15:00	33	12	21
+0:16:00	34	12	21
+0:17:00	35	13	21
+0:18:00	35	14	22
+0:19:00	36	14	22
+0:20:00	37	15	22
+0:21:00	37	15	22
+0:22:00	38	16	22
+0:23:00	38	17	22
+0:24:00	39	17	22
+0:25:00	39	18	22
+0:26:00	40	19	24
+0:27:00	40	19	22
+0:28:00	41	20	22
+0:29:00	41	20	22
+0:30:00	42	21	28
+0:31:00	42	22	27
+0:32:00	43	22	29
+0:33:00	44	23	28
+0:34:00	44	23	27
+0:35:00	45	24	27
+0:36:00	46	25	27
+0:37:00	46	25	27
+0:38:00	47	26	27
+0:39:00	47	27	27
+0:40:00	48	27	27
+0:41:00	48	28	28
+0:42:00	49	28	28
+0:43:00	49	27	28
+0:44:00	50	27	28
+0:45:00	50	27	28
+0:46:00	50	27	28
+0:47:00	50	27	28
+0:48:00	50	27	28
+0:49:00	50	27	27

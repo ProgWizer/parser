@@ -1,0 +1,93 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	UCA Right Cell
+Instrument Type	Model 4262 Twin Cell UCA
+Instrument Serial Number	
+Test Start Date	21.04.2017
+Test Start Time	15:35:09
+Test Stop Date	21.04.2017
+Test Stop Time	16:01:02
+Test Length	0:25:53
+Final Sample Time Offset	0:25:30
+Controller Schedule Name	
+Sampling Period	30 seconds
+Comments	
+Information	WellID	
+Information	Customer	
+Information	EngName	
+Information	CementClass	G
+Information	CementMfr	
+Information	Additives	100G:120Gipsum+0.15DPC+0.4Sodium Cit
+Information	Density	1870
+Information	BHCT	
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	CS_50	N/A
+Calculated Value	CS_500	N/A
+Calculated Value	CS_Time8h	N/A
+Calculated Value	CS_Time12h	N/A
+Calculated Value	CS_Time24h	N/A
+Calculated Value	CS_Time48h	N/A
+Calculated Value	CS_Time72h	N/A
+Calculated Curve	Compressive Strength	Compressive strength type B (more than 14 lb/gal)
+Initial Temperature (°C)	22 °C
+Final Temperature (°C)	14 °C
+Initial Transit Time (microsec/in)	16,86 microsec/in
+Final Transit Time (microsec/in)	17,45 microsec/in
+Initial Compressive Strength (MPa)	0,00 MPa
+Final Compressive Strength (MPa)	0,00 MPa
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Transit Time (microsec/in)	Compressive Strength (MPa)
+0:00:00	22	16,86	0,00
+0:00:30	22	16,85	0,00
+0:01:00	22	16,83	0,01
+0:01:30	21	16,84	0,00
+0:02:00	21	16,85	0,00
+0:02:30	21	16,86	0,00
+0:03:00	21	16,86	0,00
+0:03:30	21	16,89	0,00
+0:04:00	20	16,87	0,00
+0:04:30	20	16,89	0,00
+0:05:00	20	16,89	0,00
+0:05:30	20	16,98	0,00
+0:06:00	20	17,04	0,00
+0:06:30	19	17,08	0,00
+0:07:00	19	17,11	0,00
+0:07:30	19	17,14	0,00
+0:08:00	19	17,16	0,00
+0:08:30	19	17,19	0,00
+0:09:00	19	17,21	0,00
+0:09:30	18	17,23	0,00
+0:10:00	18	17,25	0,00
+0:10:30	18	17,27	0,00
+0:11:00	18	17,28	0,00
+0:11:30	18	17,30	0,00
+0:12:00	18	17,31	0,00
+0:12:30	17	17,33	0,00
+0:13:00	17	17,34	0,00
+0:13:30	17	17,36	0,00
+0:14:00	17	17,37	0,00
+0:14:30	17	17,38	0,00
+0:15:00	16	17,39	0,00
+0:15:30	16	17,40	0,00
+0:16:00	16	17,41	0,00
+0:16:30	16	17,43	0,00
+0:17:00	16	17,43	0,00
+0:17:30	16	17,44	0,00
+0:18:00	16	17,46	0,00
+0:18:30	15	17,46	0,00
+0:19:00	15	17,46	0,00
+0:19:30	15	17,51	0,00
+0:20:00	1312		
+0:20:30	1307		
+0:21:00	15	17,52	0,00
+0:21:30	15	17,52	0,00
+0:22:00	15	17,49	0,00
+0:22:30	15	17,47	0,00
+0:23:00	14	17,47	0,00
+0:23:30	14	17,49	0,00
+0:24:00	14	17,49	0,00
+0:24:30	14	17,36	0,00
+0:25:00	14	17,45	0,00
+0:25:30	14	17,45	0,00

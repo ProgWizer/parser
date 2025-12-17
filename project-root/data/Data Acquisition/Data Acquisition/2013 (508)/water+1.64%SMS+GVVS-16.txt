@@ -1,0 +1,103 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	UCA Left Cell
+Instrument Type	Model 4262 Twin Cell UCA
+Instrument Serial Number	
+Test Start Date	27.03.2013
+Test Start Time	9:05:55
+Test Stop Date	27.03.2013
+Test Stop Time	9:36:54
+Test Length	0:30:59
+Final Sample Time Offset	0:30:30
+Controller Schedule Name	
+Sampling Period	30 seconds
+Comments	
+Information	WellID	
+Information	Customer	
+Information	EngName	
+Information	CementClass	
+Information	CementMfr	
+Information	Additives	
+Information	Density	
+Information	BHCT	
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	CS_50	N/A
+Calculated Value	CS_500	N/A
+Calculated Value	CS_Time8h	N/A
+Calculated Value	CS_Time12h	N/A
+Calculated Value	CS_Time24h	N/A
+Calculated Value	CS_Time48h	N/A
+Calculated Value	CS_Time72h	N/A
+Calculated Curve	Compressive Strength	Compressive strength type B (more than 14 lb/gal)
+Initial Temperature (°C)	20 °C
+Final Temperature (°C)	-0 °C
+Initial Transit Time (microsec/in)	ERROR
+Final Transit Time (microsec/in)	ERROR
+Initial Compressive Strength (MPa)	N/A
+Final Compressive Strength (MPa)	N/A
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Transit Time (microsec/in)	Compressive Strength (MPa)
+0:00:00	20		
+0:00:30	21		
+0:01:00	22		
+0:01:30	22		
+0:02:00	21		
+0:02:30	19		
+0:03:00	18		
+0:03:30	17		
+0:04:00	16		
+0:04:30	14		
+0:05:00	13		
+0:05:30	12		
+0:06:00	11		
+0:06:30	10		
+0:07:00	9		
+0:07:30	8		
+0:08:00	8		
+0:08:30	7		
+0:09:00	6		
+0:09:30	6		
+0:10:00	5		
+0:10:30	5		
+0:11:00	5		
+0:11:30	4		
+0:12:00	4		
+0:12:30	4		
+0:13:00	3		
+0:13:30	3		
+0:14:00	3		
+0:14:30	3		
+0:15:00	2		
+0:15:30	2		
+0:16:00	2		
+0:16:30	2		
+0:17:00	2		
+0:17:30	1		
+0:18:00	1		
+0:18:30	1		
+0:19:00	1		
+0:19:30	1		
+0:20:00	1		
+0:20:30	0		
+0:21:00	0		
+0:21:30	-0		
+0:22:00	-0		
+0:22:30	-1		
+0:23:00	-1		
+0:23:30	-1		
+0:24:00	-1		
+0:24:30	-2		
+0:25:00	-2		
+0:25:30	-2		
+0:26:00	-2		
+0:26:30	-2		
+0:27:00	-3		
+0:27:30	-3		
+0:28:00	-3		
+0:28:30	-3		
+0:29:00	-3		
+0:29:30	-0		
+0:30:00	-0		
+0:30:30	-0		

@@ -1,0 +1,120 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#2
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	29.12.2003
+Test Start Time	11:32:45
+Test Stop Date	29.01.2004
+Test Stop Time	12:56:44
+Test Length	745:23:59
+Final Sample Time Offset	1:24:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 50(90min), T: 75C(90min), tap water, dry-blending
+Information	WellID	274 Verkinskoye
+Information	Customer	SeverTEK
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	0.7%Diacel FL+0.7%RPM+1.5%TA-1
+Information	Density	1900
+Information	BHCT	75
+Information	BHST	87
+Information	FluidLoss	n/a
+Information	JobType	177.8 mm liner
+Calculated Value	30Bc - TT	1:15:00
+Calculated Value	70Bc - TT	1:24:00
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	24 °C
+Final Temperature (°C)	71 °C
+Initial Pressure (MPa)	1,1 MPa
+Final Pressure (MPa)	47,0 MPa
+Initial Consistency (Bc)	7 Bc
+Final Consistency (Bc)	86 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	24	1,1	7
+0:01:00	24	2,3	5
+0:02:00	24	3,1	4
+0:03:00	24	3,7	4
+0:04:00	24	3,9	5
+0:05:00	24	4,9	6
+0:06:00	24	5,5	6
+0:07:00	24	5,9	6
+0:08:00	25	6,6	6
+0:09:00	25	7,4	6
+0:10:00	26	8,2	5
+0:11:00	26	8,8	13
+0:12:00	27	8,9	8
+0:13:00	28	9,6	6
+0:14:00	29	10,0	6
+0:15:00	29	10,7	8
+0:16:00	30	11,2	15
+0:17:00	31	11,7	12
+0:18:00	32	12,3	15
+0:19:00	33	12,9	12
+0:20:00	34	13,5	18
+0:21:00	35	13,9	15
+0:22:00	35	14,4	14
+0:23:00	36	15,1	14
+0:24:00	37	15,6	14
+0:25:00	38	16,0	13
+0:26:00	38	16,3	13
+0:27:00	39	17,0	13
+0:28:00	40	17,4	9
+0:29:00	40	17,9	8
+0:30:00	41	18,4	8
+0:31:00	41	18,7	9
+0:32:00	42	19,4	8
+0:33:00	42	19,6	11
+0:34:00	43	20,1	9
+0:35:00	43	20,6	9
+0:36:00	44	21,3	8
+0:37:00	44	21,5	7
+0:38:00	45	22,4	8
+0:39:00	45	22,9	8
+0:40:00	46	23,4	8
+0:41:00	47	24,0	8
+0:42:00	47	24,5	10
+0:43:00	48	24,8	10
+0:44:00	48	25,3	8
+0:45:00	49	26,0	8
+0:46:00	49	26,3	8
+0:47:00	50	27,1	9
+0:48:00	50	27,5	9
+0:49:00	51	28,0	8
+0:50:00	51	28,7	10
+0:51:00	52	29,1	11
+0:52:00	52	29,6	9
+0:53:00	53	30,3	9
+0:54:00	53	30,9	9
+0:55:00	54	31,9	11
+0:56:00	54	32,1	11
+0:57:00	55	32,7	12
+0:58:00	55	33,4	12
+0:59:00	56	34,0	13
+1:00:00	57	34,5	13
+1:01:00	58	34,7	11
+1:02:00	59	35,1	11
+1:03:00	60	35,5	12
+1:04:00	60	36,1	12
+1:05:00	61	37,0	13
+1:06:00	61	37,3	14
+1:07:00	62	37,7	15
+1:08:00	62	38,3	18
+1:09:00	62	38,9	20
+1:10:00	63	39,4	23
+1:11:00	63	40,1	24
+1:12:00	64	40,6	26
+1:13:00	65	40,9	29
+1:14:00	65	41,4	32
+1:15:00	66	42,2	35
+1:16:00	66	42,7	37
+1:17:00	67	43,0	41
+1:18:00	67	43,6	44
+1:19:00	68	44,0	47
+1:20:00	68	44,5	51
+1:21:00	69	45,5	54
+1:22:00	69	46,0	65
+1:23:00	70	46,7	76
+1:24:00	71	47,0	86

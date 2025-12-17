@@ -1,0 +1,176 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	UCA Right Cell
+Instrument Type	Model 4262 Twin Cell UCA
+Instrument Serial Number	
+Test Start Date	30.10.2014
+Test Start Time	11:20:01
+Test Stop Date	30.10.2014
+Test Stop Time	12:27:31
+Test Length	1:07:30
+Final Sample Time Offset	1:07:00
+Controller Schedule Name	
+Sampling Period	30 seconds
+Comments	
+Information	WellID	
+Information	Customer	
+Information	EngName	
+Information	CementClass	
+Information	CementMfr	
+Information	Additives	
+Information	Density	
+Information	BHCT	
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	CS_50	N/A
+Calculated Value	CS_500	N/A
+Calculated Value	CS_Time8h	N/A
+Calculated Value	CS_Time12h	N/A
+Calculated Value	CS_Time24h	N/A
+Calculated Value	CS_Time48h	N/A
+Calculated Value	CS_Time72h	N/A
+Calculated Curve	Compressive Strength	Compressive strength type B (more than 14 lb/gal)
+Initial Temperature (°C)	21 °C
+Final Temperature (°C)	13 °C
+Initial Transit Time (microsec/in)	ERROR
+Final Transit Time (microsec/in)	ERROR
+Initial Compressive Strength (MPa)	N/A
+Final Compressive Strength (MPa)	N/A
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Transit Time (microsec/in)	Compressive Strength (MPa)
+0:00:00	21		
+0:00:30	22		
+0:01:00	29		
+0:01:30	29		
+0:02:00	26		
+0:02:30	19		
+0:03:00	15		
+0:03:30	12		
+0:04:00	9		
+0:04:30	6		
+0:05:00	4		
+0:05:30	2		
+0:06:00	0		
+0:06:30	-1		
+0:07:00	-2		
+0:07:30	-2		
+0:08:00	-3		
+0:08:30	-3		
+0:09:00	-3		
+0:09:30	-4		
+0:10:00	-4		
+0:10:30	-4		
+0:11:00	-4		
+0:11:30	-5		
+0:12:00	-5		
+0:12:30	-5		
+0:13:00	-5		
+0:13:30	-5		
+0:14:00	-5		
+0:14:30	-6		
+0:15:00	-6		
+0:15:30	-6		
+0:16:00	-6		
+0:16:30	-6		
+0:17:00	-6		
+0:17:30	-7		
+0:18:00	-7		
+0:18:30	-7		
+0:19:00	-7		
+0:19:30	-7		
+0:20:00	-7		
+0:20:30	-7		
+0:21:00	-8		
+0:21:30	-8		
+0:22:00	-8		
+0:22:30	-8		
+0:23:00	-8		
+0:23:30	-8		
+0:24:00	-8		
+0:24:30	-9		
+0:25:00	-9		
+0:25:30	-9		
+0:26:00	-9		
+0:26:30	-9		
+0:27:00	-9		
+0:27:30	-9		
+0:28:00	-9		
+0:28:30	-9		
+0:29:00	-10		
+0:29:30	-10		
+0:30:00	-10		
+0:30:30	-10		
+0:31:00	-10		
+0:31:30	-10		
+0:32:00	-10		
+0:32:30	-10		
+0:33:00	-10		
+0:33:30	-10		
+0:34:00	-10		
+0:34:30	-11		
+0:35:00	-11		
+0:35:30	-11		
+0:36:00	-11		
+0:36:30	-11		
+0:37:00	-11		
+0:37:30	-11		
+0:38:00	-11		
+0:38:30	-11		
+0:39:00	-11		
+0:39:30	-12		
+0:40:00	-11		
+0:40:30	-12		
+0:41:00	-12		
+0:41:30	-12		
+0:42:00	-12		
+0:42:30	-12		
+0:43:00	-12		
+0:43:30	-12		
+0:44:00	-13		
+0:44:30	-13		
+0:45:00	-13		
+0:45:30	-13		
+0:46:00	-13		
+0:46:30	-14		
+0:47:00	-14		
+0:47:30	-14		
+0:48:00	-14		
+0:48:30	-14		
+0:49:00	-15		
+0:49:30	-15		
+0:50:00	-15		
+0:50:30	-15		
+0:51:00	-15		
+0:51:30	-15		
+0:52:00	-16		
+0:52:30	-16		
+0:53:00	-16		
+0:53:30	-16		
+0:54:00	-16		
+0:54:30	-16		
+0:55:00	-17		
+0:55:30	-16		
+0:56:00	-17		
+0:56:30	-17		
+0:57:00	-17		
+0:57:30	-17		
+0:58:00	-17		
+0:58:30	-17		
+0:59:00	-17		
+0:59:30	-17		
+1:00:00	-17		
+1:00:30	-17		
+1:01:00	-17		
+1:01:30	-17		
+1:02:00	-17		
+1:02:30	-17		
+1:03:00	-18		
+1:03:30	-18		
+1:04:00	-18		
+1:04:30	-17		
+1:05:00	-4		
+1:05:30	3		
+1:06:00	8		
+1:06:30	11		
+1:07:00	13		

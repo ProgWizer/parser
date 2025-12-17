@@ -1,0 +1,72 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #1
+Instrument Type	Consistometer
+Instrument Serial Number	113
+Test Start Date	10.04.2002
+Test Start Time	22:54:41
+Test Stop Date	10.04.2002
+Test Stop Time	23:32:05
+Test Length	0:37:24
+Final Sample Time Offset	0:37:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 53(30min); T: 80C(30min), 100C(20min); tap water, cement from Usinsk, NTF premix
+Information	WellID	
+Information	Customer	Petro-Aliance
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	30%SF+0.05%NTF
+Information	Density	1960
+Information	BHCT	
+Information	BHST	100
+Information	FluidLoss	
+Information	JobType	Research
+Calculated Value	Thickening_Time	0:37:00
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	24 °C
+Final Temperature (°C)	87 °C
+Initial Pressure (MPa)	3 MPa
+Final Pressure (MPa)	51 MPa
+Initial Consistency (Bc)	27 Bc
+Final Consistency (Bc)	77 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	24	3	27
+0:01:00	24	5	30
+0:02:00	24	7	21
+0:03:00	25	9	25
+0:04:00	26	11	22
+0:05:00	28	12	22
+0:06:00	30	14	22
+0:07:00	33	15	25
+0:08:00	36	17	22
+0:09:00	39	18	21
+0:10:00	41	19	21
+0:11:00	44	21	23
+0:12:00	46	22	22
+0:13:00	48	24	23
+0:14:00	50	26	21
+0:15:00	52	27	20
+0:16:00	54	29	20
+0:17:00	56	31	24
+0:18:00	57	32	24
+0:19:00	59	34	22
+0:20:00	61	35	25
+0:21:00	63	37	25
+0:22:00	65	38	24
+0:23:00	67	40	28
+0:24:00	69	42	29
+0:25:00	71	43	32
+0:26:00	72	45	32
+0:27:00	74	46	33
+0:28:00	76	48	34
+0:29:00	77	50	39
+0:30:00	79	51	44
+0:31:00	81	51	48
+0:32:00	82	51	53
+0:33:00	83	51	58
+0:34:00	84	51	63
+0:35:00	85	51	66
+0:36:00	86	51	72
+0:37:00	87	51	77

@@ -1,0 +1,73 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222#1
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	113
+Test Start Date	23.06.2005
+Test Start Time	0:06:03
+Test Stop Date	23.06.2005
+Test Stop Time	0:43:04
+Test Length	0:37:01
+Final Sample Time Offset	0:37:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 70(60 min), T: 90(40 min), 110(30 min), all premix
+Information	WellID	
+Information	Customer	Dragon
+Information	CementClass	PCT-I-G
+Information	CementMfr	Duckerhoff
+Information	Additives	2LX+45Hem+0.5RPM+0.35SF+0.3HT
+Information	Density	2300
+Information	BHCT	110
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	Research
+Calculated Value	30Bc - TT	0:35:00
+Calculated Value	70Bc - TT	0:37:00
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	25 °C
+Final Temperature (°C)	86 °C
+Initial Pressure (MPa)	1,3 MPa
+Final Pressure (MPa)	43,5 MPa
+Initial Consistency (Bc)	22 Bc
+Final Consistency (Bc)	88 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	25	1,3	22
+0:01:00	25	2,6	12
+0:02:00	25	3,8	14
+0:03:00	25	5,8	17
+0:04:00	26	6,6	14
+0:05:00	28	7,9	14
+0:06:00	30	9,0	14
+0:07:00	32	10,2	12
+0:08:00	34	11,4	12
+0:09:00	37	12,6	12
+0:10:00	39	13,4	11
+0:11:00	41	14,8	11
+0:12:00	43	15,6	11
+0:13:00	45	17,1	11
+0:14:00	46	18,1	11
+0:15:00	48	18,6	11
+0:16:00	50	20,1	11
+0:17:00	52	21,6	11
+0:18:00	53	22,0	11
+0:19:00	55	23,4	12
+0:20:00	57	24,7	12
+0:21:00	59	25,9	12
+0:22:00	60	27,3	12
+0:23:00	62	27,7	13
+0:24:00	64	29,0	13
+0:25:00	65	30,4	14
+0:26:00	67	31,8	14
+0:27:00	68	32,4	14
+0:28:00	70	33,8	14
+0:29:00	72	35,2	14
+0:30:00	73	35,9	16
+0:31:00	75	37,2	19
+0:32:00	77	38,3	21
+0:33:00	79	39,5	25
+0:34:00	81	40,4	31
+0:35:00	82	41,4	40
+0:36:00	84	42,4	75
+0:37:00	86	43,5	88

@@ -1,0 +1,76 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #1
+Instrument Type	Consistometer
+Instrument Serial Number	113
+Test Start Date	28.10.2001
+Test Start Time	2:29:33
+Test Stop Date	28.10.2001
+Test Stop Time	3:10:48
+Test Length	0:41:15
+Final Sample Time Offset	0:41:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 27(40min); T: 49C(40min), tap water, dry-blending
+Information	WellID	5905 / 46
+Information	Customer	Sovetsky
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	0.8%CFL-117+0.1%DO-13
+Information	Density	1900
+Information	BHCT	49
+Information	BHST	63
+Information	FluidLoss	
+Information	JobType	146 mm csg  tail slurry
+Calculated Value	Thickening_Time	N/A
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	27 °C
+Final Temperature (°C)	48 °C
+Initial Pressure (MPa)	2 MPa
+Final Pressure (MPa)	23 MPa
+Initial Consistency (Bc)	28 Bc
+Final Consistency (Bc)	16 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	27	2	28
+0:01:00	27	3	27
+0:02:00	27	3	29
+0:03:00	27	4	37
+0:04:00	27	5	60
+0:05:00	27	6	30
+0:06:00	27	7	31
+0:07:00	28	7	30
+0:08:00	29	8	33
+0:09:00	30	9	42
+0:10:00	30	9	26
+0:11:00	31	10	34
+0:12:00	32	10	29
+0:13:00	33	11	27
+0:14:00	34	11	27
+0:15:00	35	12	37
+0:16:00	35	12	36
+0:17:00	36	13	35
+0:18:00	37	13	28
+0:19:00	37	14	40
+0:20:00	38	15	27
+0:21:00	38	15	33
+0:22:00	39	16	35
+0:23:00	39	16	32
+0:24:00	40	17	28
+0:25:00	40	18	40
+0:26:00	41	18	35
+0:27:00	41	19	37
+0:28:00	41	20	36
+0:29:00	42	20	35
+0:30:00	42	21	34
+0:31:00	43	22	33
+0:32:00	43	22	40
+0:33:00	44	23	34
+0:34:00	44	23	32
+0:35:00	45	24	29
+0:36:00	46	25	30
+0:37:00	46	25	24
+0:38:00	47	26	25
+0:39:00	47	27	29
+0:40:00	48	27	25
+0:41:00	48	23	16

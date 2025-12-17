@@ -1,0 +1,136 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222 #1
+Instrument Type	Consistometer
+Instrument Serial Number	113
+Test Start Date	28.02.2002
+Test Start Time	21:23:42
+Test Stop Date	28.02.2002
+Test Stop Time	23:04:51
+Test Length	1:41:09
+Final Sample Time Offset	1:41:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 50(30min); T: 75C(20min), 91C(20min); field water, dry blending
+Information	WellID	
+Information	Customer	Usinsk
+Information	CementClass	G
+Information	CementMfr	Dyckerhoff
+Information	Additives	1.4%TDF-1+0.25%TR-1
+Information	Density	1900
+Information	BHCT	91
+Information	BHST	91
+Information	FluidLoss	
+Information	JobType	Squeeze
+Calculated Value	Thickening_Time	N/A
+Calculated Value	Setting Time	N/A
+Initial Temperature (°C)	24 °C
+Final Temperature (°C)	96 °C
+Initial Pressure (MPa)	1 MPa
+Final Pressure (MPa)	50 MPa
+Initial Consistency (Bc)	14 Bc
+Final Consistency (Bc)	86 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	24	1	14
+0:01:00	24	3	17
+0:02:00	24	5	14
+0:03:00	25	7	16
+0:04:00	26	9	15
+0:05:00	27	11	16
+0:06:00	29	12	15
+0:07:00	33	14	14
+0:08:00	37	16	13
+0:09:00	40	17	15
+0:10:00	44	19	20
+0:11:00	47	20	15
+0:12:00	50	22	15
+0:13:00	53	24	15
+0:14:00	55	25	17
+0:15:00	58	27	13
+0:16:00	61	28	16
+0:17:00	63	30	19
+0:18:00	66	32	16
+0:19:00	69	33	17
+0:20:00	72	35	17
+0:21:00	74	36	16
+0:22:00	77	37	16
+0:23:00	79	39	16
+0:24:00	81	40	16
+0:25:00	82	42	16
+0:26:00	83	43	16
+0:27:00	83	45	16
+0:28:00	84	47	16
+0:29:00	84	48	18
+0:30:00	85	50	13
+0:31:00	85	51	14
+0:32:00	85	51	15
+0:33:00	85	51	17
+0:34:00	85	51	11
+0:35:00	85	51	14
+0:36:00	85	51	19
+0:37:00	85	51	20
+0:38:00	86	51	12
+0:39:00	86	51	11
+0:40:00	86	51	20
+0:41:00	88	51	15
+0:42:00	90	50	15
+0:43:00	92	50	15
+0:44:00	94	50	17
+0:45:00	95	50	16
+0:46:00	96	50	17
+0:47:00	97	50	17
+0:48:00	98	50	16
+0:49:00	98	50	16
+0:50:00	98	50	16
+0:51:00	99	50	17
+0:52:00	99	50	17
+0:53:00	99	50	19
+0:54:00	100	50	16
+0:55:00	100	50	17
+0:56:00	101	50	24
+0:57:00	101	50	23
+0:58:00	100	50	22
+0:59:00	100	50	22
+1:00:00	100	50	22
+1:01:00	99	50	22
+1:02:00	99	50	22
+1:03:00	98	50	22
+1:04:00	97	50	22
+1:05:00	96	50	22
+1:06:00	96	50	22
+1:07:00	95	50	22
+1:08:00	94	50	22
+1:09:00	93	50	22
+1:10:00	93	50	22
+1:11:00	92	50	31
+1:12:00	92	50	32
+1:13:00	91	50	30
+1:14:00	90	50	30
+1:15:00	90	50	31
+1:16:00	89	50	30
+1:17:00	88	51	30
+1:18:00	88	51	29
+1:19:00	87	51	29
+1:20:00	86	51	29
+1:21:00	86	51	32
+1:22:00	85	51	31
+1:23:00	85	51	33
+1:24:00	84	51	32
+1:25:00	84	51	31
+1:26:00	84	51	38
+1:27:00	84	51	38
+1:28:00	84	51	38
+1:29:00	84	51	37
+1:30:00	84	51	37
+1:31:00	85	51	35
+1:32:00	86	51	35
+1:33:00	87	51	32
+1:34:00	88	51	34
+1:35:00	89	51	34
+1:36:00	90	51	33
+1:37:00	91	51	31
+1:38:00	92	51	31
+1:39:00	93	51	31
+1:40:00	95	50	36
+1:41:00	96	50	86

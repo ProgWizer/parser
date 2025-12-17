@@ -1,0 +1,112 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222-2
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	18.03.2009
+Test Start Time	13:35:54
+Test Stop Date	18.03.2009
+Test Stop Time	14:51:54
+Test Length	1:16:00
+Final Sample Time Offset	1:16:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 22(50), T:60(50)
+Information	WellID	Research
+Information	Customer	PetroAlliance
+Information	CementClass	G
+Information	CementMfr	Dykerhoff
+Information	Additives	1.5gpsLX-200+0.4%RPM+0.4%SMS+0.12%SF-100
+Information	Density	1900
+Information	BHCT	60
+Information	BHST	80
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	30Bc - TT	1:07:00
+Calculated Value	70Bc - TT	1:16:00
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	26 °C
+Final Temperature (°C)	60 °C
+Initial Pressure (MPa)	0,5 MPa
+Final Pressure (MPa)	22,5 MPa
+Initial Consistency (Bc)	8 Bc
+Final Consistency (Bc)	88 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	26	0,5	8
+0:01:00	26	2,3	4
+0:02:00	25	3,3	3
+0:03:00	26	3,7	3
+0:04:00	27	4,0	3
+0:05:00	28	4,4	4
+0:06:00	29	4,9	4
+0:07:00	30	5,3	4
+0:08:00	30	5,7	4
+0:09:00	31	6,0	4
+0:10:00	32	6,3	4
+0:11:00	33	6,9	4
+0:12:00	34	7,1	4
+0:13:00	34	7,7	4
+0:14:00	35	8,1	4
+0:15:00	36	8,2	4
+0:16:00	36	8,8	4
+0:17:00	37	8,8	5
+0:18:00	38	9,5	5
+0:19:00	38	10,1	5
+0:20:00	39	10,0	5
+0:21:00	40	10,6	6
+0:22:00	41	11,3	6
+0:23:00	41	11,3	7
+0:24:00	42	11,9	7
+0:25:00	43	12,5	7
+0:26:00	43	12,5	6
+0:27:00	44	13,1	6
+0:28:00	45	13,7	6
+0:29:00	45	13,6	6
+0:30:00	46	14,4	6
+0:31:00	47	14,3	6
+0:32:00	47	15,1	6
+0:33:00	48	15,5	7
+0:34:00	49	16,0	7
+0:35:00	50	15,9	8
+0:36:00	50	16,6	8
+0:37:00	51	17,3	8
+0:38:00	52	17,3	8
+0:39:00	52	18,0	8
+0:40:00	53	17,9	8
+0:41:00	54	18,5	8
+0:42:00	54	19,1	9
+0:43:00	55	19,7	9
+0:44:00	56	19,6	10
+0:45:00	56	20,3	11
+0:46:00	57	20,9	11
+0:47:00	58	20,8	12
+0:48:00	58	21,2	12
+0:49:00	59	21,7	12
+0:50:00	60	22,3	12
+0:51:00	60	22,7	12
+0:52:00	61	22,5	12
+0:53:00	61	22,0	14
+0:54:00	61	22,0	14
+0:55:00	61	22,3	15
+0:56:00	61	22,1	14
+0:57:00	61	22,1	16
+0:58:00	60	22,1	17
+0:59:00	60	22,1	20
+1:00:00	60	22,3	22
+1:01:00	60	22,2	24
+1:02:00	60	22,2	24
+1:03:00	60	22,3	24
+1:04:00	60	22,3	27
+1:05:00	60	22,4	29
+1:06:00	60	22,4	34
+1:07:00	60	22,4	36
+1:08:00	60	22,4	39
+1:09:00	60	22,5	42
+1:10:00	60	22,5	48
+1:11:00	60	22,5	54
+1:12:00	60	22,5	56
+1:13:00	60	22,5	63
+1:14:00	60	22,5	25
+1:15:00	60	22,5	79
+1:16:00	60	22,5	88

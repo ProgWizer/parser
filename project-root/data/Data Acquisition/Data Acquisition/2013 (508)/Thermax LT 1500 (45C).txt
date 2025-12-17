@@ -1,0 +1,58 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222-09-1
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	24.02.2012
+Test Start Time	12:45:56
+Test Stop Date	24.02.2012
+Test Stop Time	13:08:25
+Test Length	0:22:29
+Final Sample Time Offset	0:22:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 26(35), T,C:45(35),  50%MgO+50%MgCl2
+Information	WellID	Research
+Information	Customer	
+Information	CementClass	Thermax LT
+Information	CementMfr	
+Information	Additives	no
+Information	Density	1610
+Information	BHCT	45
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	30Bc - TT	0:20:00
+Calculated Value	70Bc - TT	0:22:00
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	29 °C
+Final Temperature (°C)	40 °C
+Initial Pressure (MPa)	0,7 MPa
+Final Pressure (MPa)	16,6 MPa
+Initial Consistency (Bc)	10 Bc
+Final Consistency (Bc)	91 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	29	0,7	10
+0:01:00	28	3,0	5
+0:02:00	29	3,4	8
+0:03:00	30	3,7	9
+0:04:00	30	4,3	10
+0:05:00	30	5,0	10
+0:06:00	30	6,6	11
+0:07:00	31	6,5	8
+0:08:00	32	7,0	8
+0:09:00	32	7,8	11
+0:10:00	32	9,2	12
+0:11:00	32	9,7	13
+0:12:00	34	9,7	18
+0:13:00	35	10,5	14
+0:14:00	35	11,1	17
+0:15:00	35	12,4	16
+0:16:00	35	13,1	27
+0:17:00	37	13,2	31
+0:18:00	38	13,7	26
+0:19:00	38	14,7	35
+0:20:00	38	15,6	50
+0:21:00	37	16,9	73
+0:22:00	40	16,6	91

@@ -1,0 +1,66 @@
+--Test Summary--
+Full Path and File Name	
+Instrument Name	7222-09-1
+Instrument Type	Model 7222 Consistometer
+Instrument Serial Number	128
+Test Start Date	24.02.2012
+Test Start Time	15:22:10
+Test Stop Date	24.02.2012
+Test Stop Time	15:53:04
+Test Length	0:30:54
+Final Sample Time Offset	0:30:00
+Controller Schedule Name	
+Sampling Period	60 seconds
+Comments	MPa: 26(35), T,C:45(35), 44%MgO+56%MgCl
+Information	WellID	Research
+Information	Customer	Trican
+Information	CementClass	Thermal LX
+Information	CementMfr	
+Information	Additives	no
+Information	Density	1610
+Information	BHCT	45
+Information	BHST	
+Information	FluidLoss	
+Information	JobType	
+Calculated Value	30Bc - TT	0:30:00
+Calculated Value	70Bc - TT	N/A
+Calculated Value	100Bc - TT	N/A
+Initial Temperature (°C)	29 °C
+Final Temperature (°C)	42 °C
+Initial Pressure (MPa)	1,0 MPa
+Final Pressure (MPa)	22,7 MPa
+Initial Consistency (Bc)	2 Bc
+Final Consistency (Bc)	82 Bc
+--Data--
+Time (HH:MM:SS)	Temperature (°C)	Pressure (MPa)	Consistency (Bc)
+0:00:00	29	1,0	2
+0:01:00	29	2,3	5
+0:02:00	29	3,0	2
+0:03:00	30	3,8	5
+0:04:00	30	4,6	8
+0:05:00	30	5,4	3
+0:06:00	31	6,6	6
+0:07:00	31	6,4	2
+0:08:00	32	7,3	4
+0:09:00	32	8,1	3
+0:10:00	32	9,3	1
+0:11:00	33	9,6	5
+0:12:00	34	9,9	3
+0:13:00	34	10,6	2
+0:14:00	34	11,8	6
+0:15:00	35	12,5	5
+0:16:00	36	12,6	1
+0:17:00	36	13,5	5
+0:18:00	36	14,6	7
+0:19:00	37	15,6	3
+0:20:00	38	15,3	5
+0:21:00	38	16,2	5
+0:22:00	38	16,8	4
+0:23:00	38	17,9	6
+0:24:00	39	18,6	6
+0:25:00	41	18,8	9
+0:26:00	42	19,5	12
+0:27:00	42	20,3	19
+0:28:00	41	21,2	26
+0:29:00	42	22,1	36
+0:30:00	42	22,7	82

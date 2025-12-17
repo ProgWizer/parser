@@ -47,7 +47,12 @@ const LogViewer = ({ logs }) => {
       }}
     >
       {logs.length === 0 ? (
-        <Typography color="text.secondary" sx={{ fontStyle: 'italic' }}>
+        <Typography 
+          sx={{ 
+            fontStyle: 'italic',
+            color: '#ffffff' 
+          }}
+        >
           Логи будут отображаться здесь...
         </Typography>
       ) : (
